@@ -26,8 +26,8 @@ export default function Example() {
                 </h2>
                 <p className="mt-2 text-sm leading-6 text-gray-500">
                   Not a member?{' '}
-                  <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                    Start a 14 day free trial
+                  <a href="#" className="font-semibold text-teal-400 hover:text-teal-500">
+                    Create AI template for free 💸
                   </a>
                 </p>
               </div>
@@ -88,12 +88,12 @@ export default function Example() {
                     </div>
   
                     <div>
-                      <button
-                        type="submit"
-                        className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                      >
-                        Sign in
-                      </button>
+                    <button
+                      type="submit"
+                      className="flex w-full justify-center rounded-md bg-gradient-to-r from-fuchsia-500 to-cyan-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    >
+                      Sign in
+                    </button>
                     </div>
                   </form>
                 </div>

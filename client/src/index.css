@@ -12,7 +12,7 @@
   }
   
   .custom-gradient {
-    background-image: linear-gradient(to left bottom, rgb(134, 239, 172), rgb(59, 130, 246), rgb(147, 51, 234));
+    background-image: linear-gradient(to right, #e50be8, #00FFFF);
     background-size: 400% auto; /* Increase the size for a smoother effect */
     animation: moving-gradient 10s linear infinite; /* Increase the duration for a slower animation */
     -webkit-background-clip: text;
