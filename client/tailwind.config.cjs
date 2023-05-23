@@ -7,5 +7,7 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: ["forms"],
+  plugins: [
+    import ('@tailwindcss/forms'),
+  ],
 }

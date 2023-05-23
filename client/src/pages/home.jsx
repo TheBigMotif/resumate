@@ -36,7 +36,7 @@ export default function Models() {
     <div className="bg-white py-10">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <h4 className="text-teal-400 font-semibold tracking-tight">UNLOCK AI POTENTIAL</h4>
+        <h3 className="font-semibold tracking-tight bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 text-transparent bg-clip-text">UNLOCK AI POTENTIAL</h3>
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Resumate Hub 🪄</h2>
           <p className="mt-2 text-lg leading-8 text-gray-600">
             Discover AI-powered curated template generators for various purposes, ranging from crafting professional resumes
