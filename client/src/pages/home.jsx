@@ -3,7 +3,7 @@ import { posts } from '../data/data.js';
 
 export default function Models() {
   return (
-    <div className="bg-white py-10">
+    <div className="bg-gray-100 py-10">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
         <h3 className="font-semibold tracking-tight bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 text-transparent bg-clip-text">UNLOCK AI POTENTIAL</h3>
@@ -17,7 +17,7 @@ export default function Models() {
           {posts.map((post) => (
             <article
               key={post.id}
-              className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-200 px-8 pb-8 pt-5 sm:pt-8 lg:pt-8 shadow-xl"
+              className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-white px-8 pb-8 pt-5 sm:pt-8 lg:pt-8 shadow-xl"
             >
               <div className="absolute inset-0 -z-10" />
               <div className={`text-5xl sm:text-3xl lg:text-6xl mb-2`}>{post.Emoji}</div>
