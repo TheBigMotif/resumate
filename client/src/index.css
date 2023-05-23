@@ -1,3 +1,21 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+@keyframes moving-gradient {
+    0% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  .custom-gradient {
+    background-image: linear-gradient(to left bottom, rgb(134, 239, 172), rgb(59, 130, 246), rgb(147, 51, 234));
+    background-size: 400% auto; /* Increase the size for a smoother effect */
+    animation: moving-gradient 10s linear infinite; /* Increase the duration for a slower animation */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
