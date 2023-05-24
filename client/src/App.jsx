@@ -3,6 +3,8 @@ import Trustedby from "./components/Trustedby.jsx";
 import Navbar from "./components/Navbar.jsx"
 import Singup from "./components/singnup1"
 import Personal from "./components/Formularios/personal.jsx"
+import DeveloperTools from "./components/Formularios/multipleq.jsx";
+
 
 
 function App() {
@@ -13,6 +15,7 @@ function App() {
       <Trustedby />
       <Singup />
       <Personal />
+      <DeveloperTools />
     </>
   );
 }

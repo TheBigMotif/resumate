@@ -1,6 +1,7 @@
 import { posts } from '../data/data.js';
 
 
+
 export default function Models() {
   return (
     <div className="bg-gray-50 py-10">
