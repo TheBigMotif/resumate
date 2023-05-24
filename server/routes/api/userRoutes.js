@@ -13,7 +13,7 @@ const {
 // * update one user localhost:3001/api/user/:userId
 // * eliminate one user localhost:3001/api/user/:userId
 
-router.route("/").get(getUser).post(createUser);
+router.route("/").get(getUsers).post(createUser);
 router.route("/:userId").get(getSingleUser).put(updateUser).delete(deleteUser);
 
 module.exports = router;
