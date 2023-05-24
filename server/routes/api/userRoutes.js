@@ -1,4 +1,5 @@
-const router = require("express").Routers;
+const express = require("express");
+const router = express.Router();
 const {
   getUsers,
   getSingleUser,
