@@ -1,7 +1,7 @@
 const { User } = require("../models/user");
 
 const userController = {
-  // get all users
+  // * get all users
   getUsers(req, res) {
     User.find({})
       .then((dbUserData) => {
@@ -14,6 +14,7 @@ const userController = {
   },
 
   getSingleUser(req, res) {
+    // * get one user
     User.findOne({ _id: req.params.userId })
       .then((dbUserData) => {
         if (!dbUserData) {
@@ -28,6 +29,7 @@ const userController = {
   },
 
   createUser(req, res) {
+    // * post one user
     User.create(req.body)
       .then((dbUserData) => {
         res.json(dbUserData);
@@ -39,6 +41,7 @@ const userController = {
   },
 
   updateUser(req, res) {
+    // * put one user
     User.findOneAndUpdate(
       { _id: req.params.userId },
       {
@@ -62,6 +65,7 @@ const userController = {
   },
 
   deleteUser(req, res) {
+    // * delete one user
     User.findOneAndDelete({ _id: req.params.userId })
       .then((dbUserData) => {
         if (!dbUserData) {
