@@ -7,10 +7,10 @@ export default function Models() {
     <div className="bg-gray-50 py-10">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
        <div className="mx-auto max-w-2xl text-center">
-       <h3 className="font-semibold tracking-tight text-gray-900">UNLOCK AI POTENTIAL</h3>
+       <h3 className="font-semibold tracking-tight text-emerald-400">UNLOCK AI POTENTIAL</h3>
 
-       <h2 className="text-3xl font-bold tracking-tight text-gray-900 lg:text-6xl">
-  <span className="custom-gradient">Resumate Hub 🪄</span>
+       <h2 className="text-3xl font-bold tracking-tight text-gray-800 lg:text-6xl">
+Resumate Hub 🪄
 </h2>
 
   <p className="mt-2 text-lg leading-8 text-gray-600">
