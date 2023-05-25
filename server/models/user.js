@@ -1,26 +1,44 @@
 const { Schema, model } = require("mongoose");
-// const { User } = require(".");
 
-// hola
-
+// Schema to create a user model
 const userSchema = new Schema(
   {
-    username: {
+    userName: {
       type: String,
       required: true,
       unique: true,
       trim: true,
     },
+    first: {
+      type: String,
+      required: true,
+      max_length: 50,
+    },
+    last: {
+      type: String,
+      required: true,
+      max_length: 50,
+    },    
     email: {
       type: String,
       required: true,
       unique: true,
       match: [/.+@.+\..+/, "You have to use a valid email address"],
     },
-    experience: [
+    github: {
+      type: String,
+      required: true,
+      max_length: 50,
+    },
+    linkedin: {
+      type: String,
+      required: true,
+      max_length: 50,
+    },
+    responses: [
       {
-        type: Schema.Types.Object,
-        ref: "Expirience",
+        type: Schema.Types.ObjectId,
+        ref: "Response",
       },
     ],
   },
