@@ -1,4 +1,4 @@
-const { Schema, Types } = require('mongoose');
+const { Schema, Types } = require("mongoose");
 
 const experienceSchema = new Schema(
   {
@@ -21,7 +21,23 @@ const experienceSchema = new Schema(
       type: Number,
       required: true,
       maxlength: 4,
-      minlength: 4
+      minlength: 4,
+    },
+    StartingDate: {
+      type: String,
+      required: true,
+    },
+    EndDate: {
+      type: String,
+      required: true,
+    },
+    ROLE: {
+      type: String,
+      required: true,
+    },
+    Responsabilities: {
+      type: String,
+      required: true,
     },
   },
   {
