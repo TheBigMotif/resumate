@@ -1,10 +1,8 @@
 import Home from "./components/home.jsx";
 import Trustedby from "./components/Trustedby.jsx";
 import Navbar from "./components/Navbar.jsx";
-import Singup from "./components/singnup1";
-import Personal from "./components/Formularios/personal.jsx";
-import DeveloperTools from "./components/Formularios/multipleq.jsx";
-import Test from "./components/test.jsx";
+import Signup from "./components/Singnup.jsx";
+import PersonalData from "./components/PersonalData.jsx";
 
 function App() {
   return (
@@ -12,10 +10,6 @@ function App() {
       <Navbar />
       <Home />
       <Trustedby />
-      <Singup />
-      <Personal />
-      <DeveloperTools />
-      <Test />
     </>
   );
 }
