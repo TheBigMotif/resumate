@@ -6,6 +6,10 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration); // This is a new instance
 
+// `Craft clear messages to captivate a hiring manager. Highlight your unique selling point, drive action with a compelling call to action, and communicate benefits in a distinct tone of voice, use less than 35 words.
+
+// Write a description in first person of a person that has this skillset: , his name is , use the following format: Hi! I am a  $ developer, my name is .`,
+
 const generateText = async (req, res) => {
   const { prompt } = req.body;
 
