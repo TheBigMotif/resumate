@@ -1,4 +1,4 @@
-const { User, Matchup } = require("../models");
+const { User, Response } = require("../models");
 const { signToken } = require("../utils/auth");
 const { AuthenticationError } = require("apollo-server-express");
 const resolvers = {
@@ -39,7 +39,84 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addResponse: responseData,
+    addResponse: async (parent, { responseData }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { responses: responseData } },
+          { new: true }
+        );
+
+        return updatedUser;
+      }
+
+      throw new AuthenticationError("You need to be logged in!");
+    },
+    addExperience: async (parent, { experienceData }, context) => {
+      if (context.user) {
+        const updatedUser = await Response.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { responses: experienceData } },
+          { new: true }
+        );
+
+        return updatedUser;
+      }
+
+      throw new AuthenticationError("You need to be logged in!");
+    },
+    addEducation: async (parent, { educationData }, context) => {
+      if (context.user) {
+        const updatedUser = await Response.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { responses: educationData } },
+          { new: true }
+        );
+
+        return updatedUser;
+      }
+
+      throw new AuthenticationError("You need to be logged in!");
+    },
+    addExperience: async (parent, { experienceData }, context) => {
+      if (context.user) {
+        const updatedUser = await Response.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { responses: experienceData } },
+          { new: true }
+        );
+
+        return updatedUser;
+      }
+
+      throw new AuthenticationError("You need to be logged in!");
+    },
+    addSkills: async (parent, { skillsData }, context) => {
+      if (context.user) {
+        const updatedUser = await Response.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { responses: skillsData } },
+          { new: true }
+        );
+
+        return updatedUser;
+      }
+
+      throw new AuthenticationError("You need to be logged in!");
+    },
+    addInterest: async (parent, { interestData }, context) => {
+      if (context.user) {
+        const updatedUser = await Response.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { responses: interestData } },
+          { new: true }
+        );
+
+        return updatedUser;
+      }
+
+      throw new AuthenticationError("You need to be logged in!");
+    },
   },
 };
 
