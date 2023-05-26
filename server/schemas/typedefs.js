@@ -16,13 +16,13 @@ const typeDefs = gql`
     Linkedin: String
     responses: [Response]
   }
-  type Response{
-    technicalSkills:[String]
-    experience:[Experience]
-    education:[Education]
-    skills:[Skills]
-    interest:[Interest]
-  } 
+  type Response {
+    technicalSkills: [String]
+    experience: [Experience]
+    education: [Education]
+    skills: [Skills]
+    interest: [Interest]
+  }
   type Experience {
     experienceId: ID
     company: String
@@ -48,8 +48,8 @@ const typeDefs = gql`
     interestId: ID
     Interest: [String]
   }
- input UserInput {
-  _id: ID
+  input UserInput {
+    _id: ID
     userName: String
     first: String
     Last: String
@@ -61,23 +61,23 @@ const typeDefs = gql`
     Country: String
     github: String
     Linkedin: String
-    responses: [Response]
- }
- input ResponseInput {
-  technicalSkills:[String]
-    experience:[Experience]
-    education:[Education]
-    skills:[Skills]
-    interest:[Interest]
- }
- input ExperienceInput {
-  experienceId: ID
+    responses: [ResponseInput]
+  }
+  input ResponseInput {
+    technicalSkills: [String]
+    experience: [ExperienceInput]
+    education: [EducationInput]
+    skills: [SkillsInput]
+    interest: [InterestInput]
+  }
+  input ExperienceInput {
+    experienceId: ID
     company: String
     degree: String
     year: Int
- }
- input EducationInput {
-  educationId: ID
+  }
+  input EducationInput {
+    educationId: ID
     university: String
     degree: String
     year: Int
@@ -85,48 +85,49 @@ const typeDefs = gql`
     StartingDate: String
     EndDate: String
     DegreeTitle: String
- }
- input SkillsInput {
-  skillId: ID
+  }
+  input SkillsInput {
+    skillId: ID
     SoftSkills: [String]
     HardSkills: [String]
- }
- input InterestInput {
-  skillId: ID
+  }
+  input InterestInput {
+    skillId: ID
     interestId: ID
     Interest: [String]
- }
- type Auth{
-  token: ID
-  user: User
-
- }
+  }
+  type Auth {
+    token: ID
+    user: User
+  }
 
   # Controllers (only for GETs)
   type Query {
     user: User
-    // users: [User] #for all users
-    
   }
   type Mutation {
-  addUser(userName:String, 
-    first: String,
-    Last: String,
-    email: String,
-    DOB: String,
-    Phone: String,
-    City: String,
-    State: String,
-    Country: String,
-    github: String,
-    Linkedin: String):Auth
-    login(email: String, password: String):Auth
-    addResponse(responseData:ResponseInput):User
-    addExperience(experienceData:ExperienceInput):User
-    addEducation(educationeData:EducationInput):User
-    addSkills(skillsData:SkillsInput):User
-    addInterest(interestData:InterestInput):User
+    addUser(
+      userName: String
+      first: String
+      Last: String
+      email: String
+      DOB: String
+      Phone: String
+      City: String
+      State: String
+      Country: String
+      github: String
+      Linkedin: String
+    ): Auth
+    login(email: String, password: String): Auth
+    addResponse(responseData: ResponseInput): User
+    addExperience(experienceData: ExperienceInput): User
+    addEducation(educationeData: EducationInput): User
+    addSkills(skillsData: SkillsInput): User
+    addInterest(interestData: InterestInput): User
   }
 `;
 
 module.exports = typeDefs;
+
+// users: [User] #for all users
