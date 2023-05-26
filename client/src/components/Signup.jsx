@@ -1,6 +1,10 @@
 import singupImage from "../assets/singup.png";
 
 export default function Example() {
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    window.location.href = "/personaldata";
+  };
   return (
     <>
       {/*
@@ -34,7 +38,11 @@ export default function Example() {
 
             <div className="mt-10">
               <div>
-                <form action="#" method="POST" className="space-y-6">
+                <form
+                  onSubmit={handleFormSubmit}
+                  action="#"
+                  className="space-y-6"
+                >
                   <div>
                     <label
                       htmlFor="email"

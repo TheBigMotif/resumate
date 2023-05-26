@@ -3,7 +3,7 @@ export const posts = [
     id: 1,
     title: "ResumeGenie",
     Emoji: "🧞‍♂️",
-    href: "./Signup.jsx",
+    href: "/signup",
     description:
       "Crafted resumes in 15 questions. Stand out, capture employers, and boost your career success.",
     buttonText: "Boost your career 💼",
