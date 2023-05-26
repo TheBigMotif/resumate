@@ -2,6 +2,18 @@ const path = require("path");
 const express = require("express");
 const dotenv = require("dotenv");
 
+// BACK END
+
+// Schema folder, type definitions, resolvers
+// Query to generate a response from OpenAI
+// Mutation to save a response to the database
+
+// FRONT END
+
+// Queries, mutations to connect, the ones that go into utils, file mutations and file queries
+// Install apollo client, graphql(On the client folder, needed in both client and server folders)
+// Now you can start connecting into the server, hooks, usequeries, mutations
+
 const db = require("./config/connections");
 const routes = require("./routes/index");
 
