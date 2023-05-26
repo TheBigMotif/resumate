@@ -221,7 +221,7 @@ const App = () => {
               </div>
             </div>
           </div>
-          <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
+          {/* <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
             <button
               type="button"
               className="text-sm font-semibold leading-6 text-gray-900 rounded-lg px-8 py-3 shadow-lg"
@@ -234,7 +234,7 @@ const App = () => {
             >
               Save
             </button>
-          </div>
+          </div> */}
         </form>
       </div>
     </div>
