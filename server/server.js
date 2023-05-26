@@ -2,6 +2,18 @@ const express = require("express");
 const { ApolloServer } = require("apollo-server-express");
 const path = require("path");
 const { authMiddleware } = require("./utils/auth");
+
+// BACK END
+
+// Schema folder, type definitions, resolvers
+// Query to generate a response from OpenAI
+// Mutation to save a response to the database
+
+// FRONT END
+
+// Queries, mutations to connect, the ones that go into utils, file mutations and file queries
+// Install apollo client, graphql(On the client folder, needed in both client and server folders)
+// Now you can start connecting into the server, hooks, usequeries, mutations
 const { typeDefs, resolvers } = require("./schemas");
 const db = require("./config/connections");
 

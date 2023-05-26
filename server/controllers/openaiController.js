@@ -10,8 +10,14 @@ const openai = new OpenAIApi(configuration); // This is a new instance
 
 // Write a description in first person of a person that has this skillset: , his name is , use the following format: Hi! I am a  $ developer, my name is .`,
 
+// about me
+// work experience
+// promptExp
+// promptAboutme
+
+// this code will go into a resolver, req and res will no longer be needed
 const generateText = async (req, res) => {
-  const { prompt } = req.body;
+  const { prompt } = req.body; // arguments from the client side, apollo client
 
   try {
     const response = await openai.createCompletion({
