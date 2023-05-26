@@ -18,12 +18,36 @@ const userSchema = new Schema(
       type: String,
       required: true,
       max_length: 50,
-    },    
+    },
     email: {
       type: String,
       required: true,
       unique: true,
       match: [/.+@.+\..+/, "You have to use a valid email address"],
+    },
+    DOB: {
+      type: String,
+      require: true,
+    },
+    Phone: {
+      type: String,
+      require: true,
+    },
+    Phone: {
+      type: String,
+      require: true,
+    },
+    City: {
+      type: String,
+      require: true,
+    },
+    State: {
+      type: String,
+      require: true,
+    },
+    Country: {
+      type: String,
+      require: true,
     },
     github: {
       type: String,
