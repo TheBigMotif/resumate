@@ -1,4 +1,4 @@
-const { Schema, Types } = require('mongoose');
+const { Schema, Types } = require("mongoose");
 
 const educationSchema = new Schema(
   {
@@ -21,7 +21,29 @@ const educationSchema = new Schema(
       type: Number,
       required: true,
       maxlength: 4,
-      minlength: 4
+      minlength: 4,
+    },
+    CompanyName: {
+      type: String,
+      required: true,
+    },
+    StartingDate: {
+      type: String,
+      required: true,
+    },
+    EndDate: {
+      type: String,
+      required: true,
+    },
+    DegreeTitle: {
+      type: String,
+      required: true,
+    },
+    year: {
+      type: Number,
+      required: true,
+      maxlength: 4,
+      minlength: 4,
     },
   },
   {

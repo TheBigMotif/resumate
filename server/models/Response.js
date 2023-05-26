@@ -1,17 +1,22 @@
 const { Schema, model } = require("mongoose");
 const educationSchema = require("./Education");
 const experienceSchema = require("./Experience");
-
+const skillsSchema = require("./Skills");
+const interestSchema = require("./Interest");
 // Schema to create a course model
 const responseSchema = new Schema(
   {
-    technicalSkills: {
-      type: [String],
-      required: true,
-    },
+    technicalSkills: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
     experience: [experienceSchema],
-    education: [educationSchema]
-    },
+    education: [educationSchema],
+    skills: [skillsSchema],
+    interest: [interestSchema],
+  },
 
   {
     toJSON: {

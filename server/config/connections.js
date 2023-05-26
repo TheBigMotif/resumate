@@ -3,8 +3,7 @@ const mongoose = require("mongoose");
 const connectToDatabase = async () => {
   try {
     await mongoose.connect(
-      process.env.MONGODB_URI ||
-        "mongodb://127.0.0.1:27017/resumateDB",
+      process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/resumateDB"
       // {
       //   useNewUrlParser: true,
       //   useUnifiedTopology: true,
@@ -19,4 +18,3 @@ const connectToDatabase = async () => {
 connectToDatabase();
 
 module.exports = mongoose.connection;
-﻿
