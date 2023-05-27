@@ -4,7 +4,7 @@ export default function Experience() {
   const [skills, setSkills] = useState([
     {
       id: 1,
-      value: '💻 HTML, CSS, Javascript, Node.js, TS, Tailwind CSS, Ruby on Rails, SQL, Git, AWS, etc',
+      value: 'Communication, Teamwork, Leadership, Problem-solving, Adaptability, Time management',
     },
   ]);
 
@@ -34,9 +34,9 @@ export default function Experience() {
         <div className="grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-3">
           {/* Section header */}
           <div className="px-14 sm:px-0">
-            <h2 className="text-base font-semibold leading-7 text-gray-900">Hard Skills</h2>
+            <h2 className="text-base font-semibold leading-7 text-gray-900">Soft Skills</h2>
             <p className="mt-1 text-sm leading-6 text-gray-600">
-              Tell us about your skills (need copywriting)
+              Tell us about your soft skills (need copywriting)
             </p>
           </div>
 
@@ -48,14 +48,15 @@ export default function Experience() {
                 {skills.map((skill) => (
                   <div className="col-span-full" key={skill.id}>
                     <label htmlFor={`skill-${skill.id}`} className="block text-sm font-medium leading-6 text-gray-900">
-                      Hard Skills
+                      Soft Skills
                     </label>
+        
                     <div className="mt-2">
                       <textarea
                         id={`skill-${skill.id}`}
                         name={`skill-${skill.id}`}
                         rows={3}
-                        placeholder="Add more skills..."
+                        placeholder="Add more soft skills..."
                         className="block w-full rounded-md border-0 px-4 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         value={skill.value}
                         onChange={(e) => handleSkillsChange(skill.id, e.target.value)}
@@ -112,4 +113,3 @@ export default function Experience() {
     </div>
   );
 }
-
