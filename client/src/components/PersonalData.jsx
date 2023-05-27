@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { generatetext } from "../../../server/controllers/openaiController.js";
+// import { generatetext } from "../../../server/controllers/openaiController.js";
 
 const App = () => {
   const [inputValue, setInputValue] = useState("");

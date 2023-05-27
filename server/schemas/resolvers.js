@@ -1,7 +1,19 @@
 const { User, Response } = require("../models");
 const { signToken } = require("../utils/auth");
 const { AuthenticationError } = require("apollo-server-express");
+const { generatetext } = require("../controllers/openaiController");
 const resolvers = {
+  Query: {
+    generateText: async (_, { prompt }) => {
+      try {
+        const result = await generatetext(prompt);
+        return result;
+      } catch (error) {
+        throw new Error("Failed to generate text");
+      }
+    },
+  },
+
   Query: {
     user: async (context) => {
       try {
