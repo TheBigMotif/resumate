@@ -1,6 +1,6 @@
 export default function Interest() {
     return (
-      <div className="ml-28">
+      <div className="pt-20 pl-28 bg-gray-50">
         <div className="space-y-10 divide-y divide-gray-900/10">
           <div className="grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-3">
             {/* Section header */}
@@ -69,7 +69,6 @@ export default function Interest() {
       </div>
     );
    }
-   
    
    
    
