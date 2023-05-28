@@ -3,6 +3,33 @@ const { ApolloServer } = require("apollo-server-express");
 const path = require("path");
 const { authMiddleware } = require("./utils/auth");
 
+const axios = require("axios");
+require("dotenv").config();
+
+app.use(express.json());
+
+app.post("/api/openai", async (req, res) => {
+  try {
+    const response = await axios.post(
+      "https://api.openai.com/v1/engines/davinci-codex/completions",
+      req.body,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
+        },
+      }
+    );
+
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json({ error: error.toString() });
+  }
+});
+
+const port = process.env.PORT || 3001;
+app.listen(port, () => console.log(`Server listening on port ${port}`));
+
 // BACK END
 
 // Schema folder, type definitions, resolvers
