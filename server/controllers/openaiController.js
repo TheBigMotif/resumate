@@ -1,24 +1,14 @@
 require("dotenv").config(); // This is your .env file, where you store your API key
 const { Configuration, OpenAIApi } = require("openai");
+
 const configuration = new Configuration({
+  organization: "org-PqrKEzVHYaGnkbwL8qtLOri0",
   apiKey: process.env.OPENAI_API_KEY,
 }); // This is your API key, this is how you authenticate with OpenAI. This is stored in your .env file
 
 const openai = new OpenAIApi(configuration); // This is a new instance
 
-// `Craft clear messages to captivate a hiring manager. Highlight your unique selling point, drive action with a compelling call to action, and communicate benefits in a distinct tone of voice, use less than 35 words.
-
-// Write a description in first person of a person that has this skillset: , his name is , use the following format: Hi! I am a  $ developer, my name is .`,
-
-// about me
-// work experience
-// promptExp
-// promptAboutme
-
-// this code will go into a resolver, req and res will no longer be needed
-const generateText = async (req, res) => {
-  const { prompt } = req.body; // arguments from the client side, apollo client
-
+const generatetext = async (prompt) => {
   try {
     const response = await openai.createCompletion({
       model: "text-davinci-003",
@@ -28,10 +18,10 @@ const generateText = async (req, res) => {
     });
     const textAnswer = response.data.choices[0].text;
 
-    res.status(200).json({
+    return {
       success: true,
       data: textAnswer,
-    });
+    };
   } catch (error) {
     if (error.response) {
       console.log(error.response.status);
@@ -39,11 +29,11 @@ const generateText = async (req, res) => {
     } else {
       console.log(error.message);
     }
-    res.status(400).json({
+    return {
       success: false,
       error: "There was an error generating the text.",
-    });
+    };
   }
 };
 
-module.exports = { generateText };
+module.exports = { generatetext };

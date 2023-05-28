@@ -1,8 +1,6 @@
-const { ObjectId } = require("mongoose").Types;
 const { User } = require("../models/User");
 
 const userController = {
-
   // Get all users
   async getUsers(req, res) {
     try {
@@ -15,11 +13,12 @@ const userController = {
   // Get a user
   async getSingleUser(req, res) {
     try {
-      const user = await User.findOne({ _id: req.params.userId })
-        .select('-__v');
+      const user = await User.findOne({ _id: req.params.userId }).select(
+        "-__v"
+      );
 
       if (!user) {
-        return res.status(404).json({ message: 'No user with that ID' });
+        return res.status(404).json({ message: "No user with that ID" });
       }
 
       res.json(user);
@@ -43,11 +42,11 @@ const userController = {
       const user = await User.findOneAndDelete({ _id: req.params.userId });
 
       if (!user) {
-        res.status(404).json({ message: 'No user with that ID' });
+        res.status(404).json({ message: "No user with that ID" });
       }
 
       await Student.deleteMany({ _id: { $in: user.students } });
-      res.json({ message: 'User and students deleted!' });
+      res.json({ message: "User and students deleted!" });
     } catch (err) {
       res.status(500).json(err);
     }
@@ -62,7 +61,7 @@ const userController = {
       );
 
       if (!user) {
-        res.status(404).json({ message: 'No user with this id!' });
+        res.status(404).json({ message: "No user with this id!" });
       }
 
       res.json(user);
@@ -70,10 +69,6 @@ const userController = {
       res.status(500).json(err);
     }
   },
-
-
-
-
 
   // // * get all users
   // getUsers(req, res) {

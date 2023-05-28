@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar.jsx";
 import Signup from "./components/Signup.jsx";
 import PersonalData from "./components/PersonalData.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Prueba from "./components/Prueba.jsx"
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/personaldata" element={<PersonalData />} />
         </Routes>
         <Trustedby />
+        <Prueba />
       </BrowserRouter>
     </>
   );
