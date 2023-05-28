@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-// import { generatetext } from "../../../server/controllers/openaiController.js";
+import { useState } from "react";
+import { generatetext } from "../../../server/controllers/openaiController";
 
 const App = () => {
   const [inputValue, setInputValue] = useState("");
@@ -249,7 +249,7 @@ const App = () => {
             </button>
             <button
               type="submit"
-              className="text-sm font-semibold leading-6 text-gray-50 rounded-lg px-8 py-3 shadow-lg bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-red-500 hover:to-yellow-500 text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="text-sm font-semibold leading-6 text-white rounded-lg px-8 py-3 shadow-lg bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-red-500 hover:to-yellow-500 hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Save
             </button>
