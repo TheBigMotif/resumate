@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { generatetext } from "../../../server/controllers/openaiController";
-
+// import { generatetext } from "../../../server/controllers/openaiController";
 const App = () => {
   const [inputValue, setInputValue] = useState("");
 
@@ -10,7 +9,7 @@ const App = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    generatetext(inputValue);
+    // generatetext(inputValue);
     // Here you can send the inputValue to OpenAI
   };
   return (
