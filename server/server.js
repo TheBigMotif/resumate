@@ -5,6 +5,7 @@ const { authMiddleware } = require("./utils/auth");
 
 const axios = require("axios");
 require("dotenv").config();
+const app = express();
 
 app.use(express.json());
 
@@ -27,8 +28,8 @@ app.post("/api/openai", async (req, res) => {
   }
 });
 
-const port = process.env.PORT || 3001;
-app.listen(port, () => console.log(`Server listening on port ${port}`));
+// const port = process.env.PORT || 3001;
+// app.listen(port, () => console.log(`Server listening on port ${port}`));
 
 // BACK END
 
@@ -45,7 +46,7 @@ const { typeDefs, resolvers } = require("./schemas");
 const db = require("./config/connections");
 
 const PORT = process.env.PORT || 3001;
-const app = express();
+// const app = express();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
