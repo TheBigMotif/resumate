@@ -2,7 +2,7 @@ import { posts } from "../data/data.js";
 
 export default function Models() {
   return (
-    <div className="bg-slate-100 py-10">
+    <div className="bg-gray-50 py-10">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h3 className="font-semibold tracking-tight text-emerald-400">
