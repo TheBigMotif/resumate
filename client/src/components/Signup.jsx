@@ -1,5 +1,6 @@
 import singupImage from "../assets/singup.png";
 
+
 export default function Example() {
   const handleFormSubmit = (e) => {
     e.preventDefault();

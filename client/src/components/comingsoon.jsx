@@ -17,7 +17,7 @@ export default function Comingsoon() {
               Join us on our coding journey at Resumate.ai, where we tirelessly code new features each week.
             </p>
             <p className="mt-6 mb-4 text-base leading-7 text-gray-600">
-              Spread the word by sharing this page and following us on social media to stay connected.
+            📣 Spread the word by sharing this page and following us on social media to stay connected.
             </p>
             <div className="w-full md:w-1/3 mx-auto">
           </div>
@@ -100,11 +100,11 @@ export default function Comingsoon() {
             <div className="mt-10">
               <a href="#" className="text-sm font-semibold leading-7 text-indigo-600">
               <button
-                type="button"
-                className="rounded-md px-3.5 py-2.5 text-sm font-semibold text-white shadow-lg hover:from-indigo-500 hover:to-fuchsia-500 bg-gradient-to-r from-blue-500 to-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
-                <span aria-hidden="true">&larr;</span> Back to home
-                </button>
+  type="button"
+  className="rounded-md px-3.5 py-2.5 text-sm font-semibold text-white shadow-lg hover:from-indigo-500 hover:to-fuchsia-500 bg-gradient-to-r from-blue-500 to-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition duration-300 transform hover:-translate-y-1 hover:scale-110"
+>
+  <span aria-hidden="true">&larr;</span> Back to home
+</button>
               </a>
             </div>
           </main>
