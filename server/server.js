@@ -82,11 +82,11 @@ const upload = multer({
   limits: { fileSize: 1024 * 1024 * 5 },
 });
 
-const configuration = new Configuration({
-  apiKey: "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",
-});
+// const configuration = new Configuration({
+//   apiKey: "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",
+// });
 
-const openai = new OpenAIApi(configuration);
+// const openai = new OpenAIApi(configuration);
 
 const database = [];
 

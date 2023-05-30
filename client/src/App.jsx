@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
+import {
+  ApolloProvider,
+  ApolloClient,
+  InMemoryCache,
+  createHttpLink,
+} from "@apollo/client";
 import Home from "./components/home.jsx";
 import Trustedby from "./components/Trustedby.jsx";
 import Navbar from "./components/Navbar.jsx";
@@ -10,9 +15,13 @@ import Prueba from "./components/Prueba.jsx";
 import Resume from "./components/Resume.jsx";
 import Rough from "./components/Rough.jsx";
 
+const link = createHttpLink({
+  uri: " http://localhost:3001/graphql",
+});
+
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  uri: "/graphql",
+  link,
 });
 
 function App() {
@@ -30,6 +39,7 @@ function App() {
             <Route path="/home1" element={<Rough setResult={setResult} />} />
             <Route path="/resume" element={<Resume result={result} />} />
             <Route path="/personaldata" element={<PersonalData />} />
+            <Route path="/Work" element={<Work />} />
           </Routes>
           <Trustedby />
           <Prueba />
