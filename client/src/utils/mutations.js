@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 // TODO: is an example, information needs to be changed
 export const CREATE_MATCHUP = gql`
@@ -12,6 +12,13 @@ export const CREATE_MATCHUP = gql`
 `;
 
 // TODO: is an example, information needs to be changed
+export const GENERATE_TEXT = gql`
+  mutation Mutation($prompt: String) {
+    generateText(prompt: $prompt) {
+      data
+    }
+  }
+`;
 export const CREATE_VOTE = gql`
   mutation createVote($_id: String!, $techNum: Int!) {
     createVote(_id: $_id, techNum: $techNum) {

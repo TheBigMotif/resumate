@@ -1,15 +1,18 @@
+import { ApolloClient } from "@apollo/client";
 import { useState } from "react";
-// import generatetext from "../../../server/controllers/openaiController";
+import { useMutation } from "@apollo/client";
+import { GENERATE_TEXT } from "../utils/mutations";
+
 const App = () => {
   const [inputValue, setInputValue] = useState("");
-
+  const [generatetext, { data }] = useMutation(GENERATE_TEXT);
   const handleChange = (event) => {
     setInputValue(event.target.value);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // generatetext(inputValue);
+    generatetext(inputValue);
     // Here you can send the inputValue to OpenAI
   };
   return (

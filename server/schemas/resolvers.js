@@ -1,7 +1,8 @@
 const { User, Response, textData } = require("../models");
 const { signToken } = require("../utils/auth");
 const { AuthenticationError } = require("apollo-server-express");
-const { generatetext } = require("../controllers/openaiController");
+const generatetext = require("../controllers/openaiController");
+
 const resolvers = {
   // Query: {
   //   generateText: async (_, { prompt }) => {
@@ -55,7 +56,7 @@ const resolvers = {
     //generatetext is the name of the imported function
     generateText: async (_, { prompt }) => {
       try {
-        const result = await textData.create({ prompt });
+        const result = await generatetext(prompt);
         console.log(result);
 
         return result;
