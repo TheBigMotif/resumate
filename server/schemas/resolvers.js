@@ -1,18 +1,19 @@
-const { User, Response } = require("../models");
+const { User, Response, textData } = require("../models");
 const { signToken } = require("../utils/auth");
 const { AuthenticationError } = require("apollo-server-express");
-const { generatetext } = require("../controllers/openaiController");
+const generatetext = require("../controllers/openaiController");
+
 const resolvers = {
-  Query: {
-    generateText: async (_, { prompt }) => {
-      try {
-        const result = await generatetext(prompt);
-        return result;
-      } catch (error) {
-        throw new Error("Failed to generate text");
-      }
-    },
-  },
+  // Query: {
+  //   generateText: async (_, { prompt }) => {
+  //     try {
+  //       const result = await generatetext(prompt);
+  //       return result;
+  //     } catch (error) {
+  //       throw new Error("Failed to generate text");
+  //     }
+  //   },
+  // },
 
   Query: {
     user: async (context) => {
@@ -50,6 +51,18 @@ const resolvers = {
 
       const token = signToken(user);
       return { token, user };
+    },
+    //generateText is the name of mutation,
+    //generatetext is the name of the imported function
+    generateText: async (_, { prompt }) => {
+      try {
+        const result = await generatetext(prompt);
+        console.log(result);
+
+        return result;
+      } catch (error) {
+        throw new Error("Failed to generate text");
+      }
     },
     addResponse: async (parent, { responseData }, context) => {
       if (context.user) {

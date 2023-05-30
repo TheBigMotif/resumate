@@ -1,15 +1,20 @@
+import { ApolloClient } from "@apollo/client";
 import { useState } from "react";
-// import { generatetext } from "../../../server/controllers/openaiController";
+import { useMutation } from "@apollo/client";
+import { GENERATE_TEXT } from "../utils/mutations";
+
 const App = () => {
   const [inputValue, setInputValue] = useState("");
-
+  const [generatedText, setgeneratedText] = useState("");
+  const [generatetext, { data }] = useMutation(GENERATE_TEXT);
   const handleChange = (event) => {
     setInputValue(event.target.value);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // generatetext(inputValue);
+    const result = await generatetext(inputValue);
+    setgeneratedText(result.data.generateText.data);
     // Here you can send the inputValue to OpenAI
   };
   return (
@@ -22,6 +27,7 @@ const App = () => {
           <p className="mt-1 text-base leading-6 text-gray-600">
             ✅ To prevent any mistakes, please review the information carefully
             for accurate resume creation.
+            {generatedText}
           </p>
         </div>
 

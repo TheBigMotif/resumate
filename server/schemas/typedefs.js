@@ -1,14 +1,17 @@
 const { gql } = require("apollo-server-express");
 // ! until app is running use "!"
+// type Query {
+//     generatetext(prompt: String): TextResult
+//   }
+//error: String
+//success: Boolean
 const typeDefs = gql`
-  type Query {
-    generateText(prompt: String!): TextResult
+  type TextResult {
+    data: String
   }
 
-  type TextResult {
-    success: Boolean!
+  input TextInput {
     data: String
-    error: String
   }
 
   type User {
@@ -135,6 +138,7 @@ const typeDefs = gql`
     addEducation(educationeData: EducationInput): User
     addSkills(skillsData: SkillsInput): User
     addInterest(interestData: InterestInput): User
+    generateText(prompt: String): TextResult
   }
 `;
 

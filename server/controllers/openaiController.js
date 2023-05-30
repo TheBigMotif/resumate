@@ -1,4 +1,7 @@
 require("dotenv").config(); // This is your .env file, where you store your API key
+// import dotenv from "dotenv";
+// dotenv.config();
+
 const { Configuration, OpenAIApi } = require("openai");
 
 const configuration = new Configuration({
@@ -35,5 +38,7 @@ const generatetext = async (prompt) => {
     };
   }
 };
-
-module.exports = { generatetext };
+// generatetext("Hello, my name is Mr. Kurle").then((response) => {
+//   console.log(response);
+// });
+module.exports = generatetext;
