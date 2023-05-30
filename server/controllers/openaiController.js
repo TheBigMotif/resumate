@@ -12,12 +12,13 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration); // This is a new instance
 
 const generatetext = async (prompt) => {
+  // console.log("Esto es una prueba", prompt);
   try {
     const response = await openai.createCompletion({
       model: "text-davinci-003",
       prompt,
       max_tokens: 300,
-      temperature: 1,
+      temperature: 0,
     });
     const textAnswer = response.data.choices[0].text;
 

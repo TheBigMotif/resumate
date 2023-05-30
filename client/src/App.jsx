@@ -14,6 +14,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Prueba from "./components/Prueba.jsx";
 import Resume from "./components/Resume.jsx";
 import Rough from "./components/Rough.jsx";
+import Work from "./components/Work.jsx";
 
 const link = createHttpLink({
   uri: " http://localhost:3001/graphql",
@@ -39,7 +40,7 @@ function App() {
             <Route path="/home1" element={<Rough setResult={setResult} />} />
             <Route path="/resume" element={<Resume result={result} />} />
             <Route path="/personaldata" element={<PersonalData />} />
-            <Route path="/Work" element={<Work />} />
+            <Route path="/work" element={<Work />} />
           </Routes>
           <Trustedby />
           <Prueba />

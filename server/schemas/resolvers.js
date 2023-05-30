@@ -2,7 +2,7 @@ const { User, Response, textData } = require("../models");
 const { signToken } = require("../utils/auth");
 const { AuthenticationError } = require("apollo-server-express");
 const generatetext = require("../controllers/openaiController");
-
+const promptCase = require("../utils/promptCase");
 const resolvers = {
   // Query: {
   //   generateText: async (_, { prompt }) => {
@@ -54,10 +54,11 @@ const resolvers = {
     },
     //generateText is the name of mutation,
     //generatetext is the name of the imported function
-    generateText: async (_, { prompt }) => {
+    generateText: async (_, args) => {
       try {
+        const prompt = promptCase(args);
+
         const result = await generatetext(prompt);
-        console.log(result);
 
         return result;
       } catch (error) {
