@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { GENERATE_TEXT } from "../utils/mutations";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+// import { set } from "../../../server/models/Education";
 
 const App = () => {
   const handleFormSubmit = (e) => {
@@ -11,18 +12,31 @@ const App = () => {
   };
 
   const [inputValue, setInputValue] = useState("");
+  const [jobDescription, setjobDescription] = useState("");
   const [generatedText, setgeneratedText] = useState("");
   const [generatetext, { data }] = useMutation(GENERATE_TEXT);
   const handleChange = (event) => {
     setInputValue(event.target.value);
+  };
+  const handleJobDescription = (event) => {
+    setjobDescription(event.target.value);
+
     console.log(inputValue);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const result = await generatetext({
-      variables: { jobDescription: inputValue, prompt: "WORK" },
+      variables: {
+        prompt: `I am writing a resume, I was a \n role: ${inputValue} \n. My responsibilities were ${jobDescription}. \n . Can you write 10 points for a resume on what I did?`,
+      },
+      // variables: { prompt: inputValue },
     });
+
+    /* --------------------------------- prompt --------------------------------- */
+
+    /* --------------------------------- prompt --------------------------------- */
+
     setgeneratedText(result.data.generateText.data);
 
     // Here you can send the inputValue to OpenAI
@@ -79,6 +93,8 @@ const App = () => {
                 </label>
                 <div className="mt-2">
                   <input
+                    value={jobDescription}
+                    onChange={handleJobDescription}
                     type="text"
                     placeholder="Botti"
                     name="last-name"
