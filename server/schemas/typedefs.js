@@ -16,16 +16,16 @@ const typeDefs = gql`
 
   type User {
     _id: ID
-    userName: String
-    first: String
+    Password: String
+    First: String
     Last: String
-    email: String
+    Email: String
     DOB: String
     Phone: String
     City: String
     State: String
     Country: String
-    github: String
+    Github: String
     Linkedin: String
     responses: [Response]
   }
@@ -63,16 +63,16 @@ const typeDefs = gql`
   }
   input UserInput {
     _id: ID
-    userName: String
-    first: String
+
+    First: String
     Last: String
-    email: String
+    Email: String
     DOB: String
     Phone: String
     City: String
     State: String
     Country: String
-    github: String
+    Github: String
     Linkedin: String
     responses: [ResponseInput]
   }
@@ -120,19 +120,21 @@ const typeDefs = gql`
   }
   type Mutation {
     addUser(
-      userName: String
-      first: String
+      Password: String
+
+      First: String
       Last: String
-      email: String
+      Email: String
       DOB: String
       Phone: String
       City: String
       State: String
       Country: String
-      github: String
+      Github: String
       Linkedin: String
     ): Auth
     login(email: String, password: String): Auth
+    addData(userData: UserInput): User
     addResponse(responseData: ResponseInput): User
     addExperience(experienceData: ExperienceInput): User
     addEducation(educationeData: EducationInput): User

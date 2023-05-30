@@ -1,6 +1,37 @@
 import { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { GENERATE_TEXT } from "../utils/mutations";
 
 export default function Experience() {
+  const [inputValue, setInputValue] = useState("");
+  const [jobDescription, setjobDescription] = useState("");
+  const [generatedText, setgeneratedText] = useState("");
+  const [generatetext, { data }] = useMutation(GENERATE_TEXT);
+
+  const handleJobDescription = (event) => {
+    setjobDescription(event.target.value);
+
+    console.log(inputValue);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const result = await generatetext({
+      variables: {
+        prompt: `I am writing a resume, I was a \n role: ${inputValue} \n. My responsibilities were ${jobDescription}. \n . Can you write 10 points for a resume on what I did?`,
+      },
+      // variables: { prompt: inputValue },
+    });
+
+    /* --------------------------------- prompt --------------------------------- */
+
+    /* --------------------------------- prompt --------------------------------- */
+
+    setgeneratedText(result.data.generateText.data);
+
+    // Here you can send the inputValue to OpenAI
+  };
+
   const [experiences, setExperiences] = useState([
     {
       id: 1,
@@ -37,7 +68,10 @@ export default function Experience() {
       )
     );
   };
-
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    window.location.replace("/education");
+  };
   return (
     <div className="pt-20 px-28 pb-28 bg-gray-50">
       <div className="space-y-10 divide-y divide-gray-900/10">
@@ -53,7 +87,10 @@ export default function Experience() {
           </div>
 
           {/* Form */}
-          <form className="bg-white ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2 px-4 sm:px-40">
+          <form
+            onSubmit={handleFormSubmit}
+            className="bg-white ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2 px-4 sm:px-40"
+          >
             <div className="px-0 py-6 sm:p-8 shadow-lg">
               <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 {/* Form input */}
@@ -190,7 +227,7 @@ export default function Experience() {
                 type="submit"
                 className="rounded-md px-3.5 py-2.5 text-sm font-semibold text-white shadow-lg hover:from-indigo-500 hover:to-fuchsia-500 bg-gradient-to-r from-blue-500 to-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                Save
+                Save & Submit
               </button>
             </div>
           </form>

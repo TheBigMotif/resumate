@@ -1,25 +1,24 @@
 const { Schema, model } = require("mongoose");
-
+const bcrypt = require("bcrypt");
 // Schema to create a user model
 const userSchema = new Schema(
   {
-    userName: {
+    Password: {
       type: String,
       required: true,
-      unique: true,
-      trim: true,
     },
-    first: {
-      type: String,
-      required: true,
-      max_length: 50,
-    },
-    last: {
+
+    First: {
       type: String,
       required: true,
       max_length: 50,
     },
-    email: {
+    Last: {
+      type: String,
+      required: true,
+      max_length: 50,
+    },
+    Email: {
       type: String,
       required: true,
       unique: true,
@@ -33,10 +32,7 @@ const userSchema = new Schema(
       type: String,
       require: true,
     },
-    Phone: {
-      type: String,
-      require: true,
-    },
+
     City: {
       type: String,
       require: true,
@@ -49,12 +45,12 @@ const userSchema = new Schema(
       type: String,
       require: true,
     },
-    github: {
+    Github: {
       type: String,
       required: true,
       max_length: 50,
     },
-    linkedin: {
+    Linkedin: {
       type: String,
       required: true,
       max_length: 50,
@@ -73,6 +69,22 @@ const userSchema = new Schema(
     id: false,
   }
 );
+// hash user password
+// userSchema.pre("save", async function (next) {
+//   if (this.isNew || this.isModified("password")) {
+//     const saltRounds = 10;
+//     this.password = await bcrypt.hash(this.password, saltRounds);
+//   }
+
+//   next();
+// });
+
+// custom method to compare and validate password for logging in
+userSchema.methods.isCorrectPassword = async function (password) {
+  return bcrypt.compare(password, this.password);
+};
+
+// when we query a user, we'll also get another field called `bookCount` with the number of saved books we have
 
 const User = model("User", userSchema);
 

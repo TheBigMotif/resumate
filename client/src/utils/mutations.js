@@ -30,3 +30,41 @@ export const CREATE_VOTE = gql`
     }
   }
 `;
+export const ADD_USER = gql`
+  mutation addUser(
+    $Password: String
+    $First: String
+    $Last: String
+    $Email: String
+    $DOB: String
+    $Phone: String
+    $City: String
+    $State: String
+    $Country: String
+    $Github: String
+    $Linkedin: String
+  ) {
+    addUser(
+      Password: $Password
+      First: $First
+      Last: $Last
+      Email: $Email
+      DOB: $DOB
+      Phone: $Phone
+      City: $City
+      State: $State
+      Country: $Country
+      Github: $Github
+      Linkedin: $Linkedin
+    ) {
+      token
+      user {
+        _id
+
+        First
+        Last
+        Email
+      }
+    }
+  }
+`;

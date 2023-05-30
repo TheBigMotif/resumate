@@ -1,43 +1,52 @@
 import { ApolloClient } from "@apollo/client";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { GENERATE_TEXT } from "../utils/mutations";
+import { GENERATE_TEXT, ADD_USER } from "../utils/mutations";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import { set } from "../../../server/models/Education";
 
 const App = () => {
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    window.location.href = "/personaldata";
-  };
+  // const handleFormSubmit = (e) => {
+  //   e.preventDefault();
+  //   window.location.href = "/personaldata";
+  // };
+  const [userFormData, setUserFormData] = useState({
+    First: "",
+    Last: "",
+    DOB: "",
+    Phone: "",
+    City: "",
+    State: "",
+    Linkedin: "",
+    Github: "",
+    Country: "",
+    Email: "",
+    Password: "",
+  });
 
-  const [inputValue, setInputValue] = useState("");
-  const [jobDescription, setjobDescription] = useState("");
-  const [generatedText, setgeneratedText] = useState("");
-  const [generatetext, { data }] = useMutation(GENERATE_TEXT);
-  const handleChange = (event) => {
-    setInputValue(event.target.value);
-  };
-  const handleJobDescription = (event) => {
-    setjobDescription(event.target.value);
-
-    console.log(inputValue);
+  const [addUser] = useMutation(ADD_USER);
+  // const handleChange = (event) => {
+  //   setInputValue(event.target.value);
+  // };
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setUserFormData({ ...userFormData, [name]: value });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const result = await generatetext({
-      variables: {
-        prompt: `I am writing a resume, I was a \n role: ${inputValue} \n. My responsibilities were ${jobDescription}. \n . Can you write 10 points for a resume on what I did?`,
-      },
-      // variables: { prompt: inputValue },
-    });
 
-    /* --------------------------------- prompt --------------------------------- */
+    try {
+      const { data } = await addUser({
+        variables: { ...userFormData },
+      });
+      console.log(data);
+    } catch (err) {
+      console.error(err);
+    }
 
-    /* --------------------------------- prompt --------------------------------- */
-
-    setgeneratedText(result.data.generateText.data);
+    // window.location.replace("/work");
 
     // Here you can send the inputValue to OpenAI
   };
@@ -52,7 +61,6 @@ const App = () => {
           <p className="mt-1 text-base leading-6 text-gray-600">
             ✅ To prevent any mistakes, please review the information carefully
             for accurate resume creation.
-            {generatedText}
           </p>
         </div>
 
@@ -72,10 +80,10 @@ const App = () => {
                 </label>
                 <div className="mt-2">
                   <input
-                    value={inputValue}
-                    onChange={handleChange}
+                    value={userFormData.First}
+                    onChange={handleInputChange}
                     type="text"
-                    name="first-name"
+                    name="First"
                     id="first-name"
                     placeholder="First name"
                     autoComplete="given-name"
@@ -93,11 +101,11 @@ const App = () => {
                 </label>
                 <div className="mt-2">
                   <input
-                    value={jobDescription}
-                    onChange={handleJobDescription}
+                    value={userFormData.Last}
+                    onChange={handleInputChange}
                     type="text"
                     placeholder="Botti"
-                    name="last-name"
+                    name="Last"
                     id="last-name"
                     autoComplete="family-name"
                     className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -114,16 +122,37 @@ const App = () => {
                 </label>
                 <div className="mt-2">
                   <input
+                    value={userFormData.Email}
+                    onChange={handleInputChange}
                     id="email"
                     placeholder="mauricio@resumate.com"
-                    name="email"
+                    name="Email"
                     type="email"
                     autoComplete="email"
                     className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
-
+              <div className="sm:col-span-4">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Password
+                </label>
+                <div className="mt-2">
+                  <input
+                    value={userFormData.Password}
+                    onChange={handleInputChange}
+                    id="email"
+                    placeholder="mauricio@resumate.com"
+                    name="Password"
+                    type="password"
+                    autoComplete="email"
+                    className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
               <div className="sm:col-span-4">
                 <label
                   htmlFor="github"
@@ -136,8 +165,10 @@ const App = () => {
                     Github.com/
                   </span>
                   <input
+                    value={userFormData.Github}
+                    onChange={handleInputChange}
                     id="github"
-                    name="github"
+                    name="Github"
                     type="text"
                     autoComplete="no"
                     className="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -157,8 +188,10 @@ const App = () => {
                     Linkedin.com/in/
                   </span>
                   <input
+                    value={userFormData.Linkedin}
+                    onChange={handleInputChange}
                     id="linkedin"
-                    name="linkedin"
+                    name="Linkedin"
                     type="text"
                     autoComplete="off"
                     className="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -175,8 +208,10 @@ const App = () => {
                 </label>
                 <div className="mt-2">
                   <select
+                    value={userFormData.Country}
+                    onChange={handleInputChange}
                     id="country"
-                    name="country"
+                    name="Country"
                     autoComplete="country-name"
                     className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                   >
@@ -243,8 +278,10 @@ const App = () => {
                 </label>
                 <div className="mt-2">
                   <input
+                    value={userFormData.City}
+                    onChange={handleInputChange}
                     type="text"
-                    name="city"
+                    name="City"
                     id="city"
                     placeholder="New York City"
                     autoComplete="address-level2"
@@ -262,8 +299,10 @@ const App = () => {
                 </label>
                 <div className="mt-2">
                   <input
+                    value={userFormData.State}
+                    onChange={handleInputChange}
                     type="text"
-                    name="region"
+                    name="State"
                     placeholder="New York"
                     id="region"
                     autoComplete="address-level1"
@@ -281,7 +320,7 @@ const App = () => {
               Cancel
             </button>
             <button
-              onSubmit={handleFormSubmit}
+              // onSubmit={handleFormSubmit}
               type="submit"
               className="text-sm font-semibold leading-6 text-white rounded-lg px-8 py-3 shadow-lg bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-red-500 hover:to-yellow-500 hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >

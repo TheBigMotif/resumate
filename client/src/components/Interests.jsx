@@ -1,4 +1,8 @@
 export default function Interest() {
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    window.location.replace("/interests");
+  };
   return (
     <div className="pt-20 pl-28 bg-gray-50">
       <div className="space-y-10 divide-y divide-gray-900/10">
@@ -15,7 +19,10 @@ export default function Interest() {
           </div>
 
           {/* Form */}
-          <form className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2 px-4 sm:px-40">
+          <form
+            onSubmit={handleFormSubmit}
+            className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2 px-4 sm:px-40"
+          >
             <div className="px-4 py-6 sm:p-8">
               <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 {/* Form input */}
