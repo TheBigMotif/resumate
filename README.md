@@ -1,13 +1,12 @@
-# resumate
+# Resumate
 
 ## Description
 
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
+Given the necessity of new graduates and people changing careers to incorporate into the working market as soon as possible, it can become a very stressful task. Candidates need to prepare a resume, portfolio, LinkedIn profile, and sometimes even a Github/Gitlab profile.
 
-- What was your motivation?
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-- What did you learn?
+To take the burden out of them, we created an application that will help them create the most crucial component of their career package, the resume. With Resumate, candidates can prepare a professional resume enhanced by Artificial Intelligence with just little input.
+
+By creating this application, we learned to persevere through team work. We put into practice the use of Apollo Server and Client, GraphQL, React, MongoDB and reinforced the knowledge of Node.js and Express.js to create a powerful and valuable application.
 
 ## Table of Contents
 
@@ -18,13 +17,15 @@ Provide a short description explaining the what, why, and how of your project. U
 
 ## Installation
 
-There is no need to install this application since it is hosted in a website.
+There is no need to install this application since it is hosted in a [website](). Also, for further technical understanding of the project for developers, you can visit the [repository](https://github.com/aaronagraz/resumate).
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
+To use this application, the user needs to go the [website]() and login.
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
+Once logged in, the first screen will ask for the user's personal information that is relevant to the resume generation.
+
+After clicking on Save, the next page will display and the user needs to fill this in as well.
 
     ```md
     ![alt text](assets/images/screenshot.png)
@@ -32,19 +33,36 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 ## Credits
 
-List your collaborators, if any, with links to their GitHub profiles.
+This project was made by:
 
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
-
-If you followed tutorials, include links to those here as well.
+[Aarón Agraz](https://github.com/aaronagraz)
+[Salvador Espinosa](https://github.com/EspinosaSalvador)
+[Angelina Huerta](https://github.com/TenshiAngelina)
+[Mauricio Treviño](https://github.com/mauri-tech)
 
 ## License
 
-The last section of a high-quality README file is the license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, refer to [https://choosealicense.com/](https://choosealicense.com/).
+MIT License
 
----
+Copyright (c) [2023] [aaronagraz]  [TenshiAngelina]
 
-🏆 The previous sections are the bare minimum, and your project will ultimately determine the content of this document. You might also want to consider adding the following sections.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
 ## Badges
 
