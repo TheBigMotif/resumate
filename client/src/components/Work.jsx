@@ -1,14 +1,13 @@
-
-import { useState } from 'react';
+import { useState } from "react";
 
 export default function Experience() {
   const [experiences, setExperiences] = useState([
     {
       id: 1,
-      companyName: '',
-      jobTitle: '',
-      startDate: '',
-      endDate: '',
+      companyName: "",
+      jobTitle: "",
+      startDate: "",
+      endDate: "",
     },
   ]);
 
@@ -17,10 +16,10 @@ export default function Experience() {
       ...prevExperiences,
       {
         id: prevExperiences.length + 1,
-        companyName: '',
-        jobTitle: '',
-        startDate: '',
-        endDate: '',
+        companyName: "",
+        jobTitle: "",
+        startDate: "",
+        endDate: "",
       },
     ]);
   };
@@ -45,7 +44,9 @@ export default function Experience() {
         <div className="grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-3">
           {/* Section header */}
           <div className="px-14 sm:px-0">
-            <h2 className="font-semibold leading-7 text-gray-900 text-2xl">Experience 💼</h2>
+            <h2 className="font-semibold leading-7 text-gray-900 text-2xl">
+              Experience 💼
+            </h2>
             <p className="mt-1 text-base leading-6 text-gray-600">
               Tell us about your work experience (need copywriting)
             </p>
@@ -74,7 +75,11 @@ export default function Experience() {
                           placeholder="Example Company"
                           value={experience.companyName}
                           onChange={(e) =>
-                            handleExperienceChange(experience.id, 'companyName', e.target.value)
+                            handleExperienceChange(
+                              experience.id,
+                              "companyName",
+                              e.target.value
+                            )
                           }
                         />
                         <label
@@ -91,7 +96,11 @@ export default function Experience() {
                           placeholder="Front-end Developer"
                           value={experience.jobTitle}
                           onChange={(e) =>
-                            handleExperienceChange(experience.id, 'jobTitle', e.target.value)
+                            handleExperienceChange(
+                              experience.id,
+                              "jobTitle",
+                              e.target.value
+                            )
                           }
                         />
                       </div>
@@ -109,7 +118,11 @@ export default function Experience() {
                           className="form-input px-3 py-2 text-gray-400 text-sm md:text-xl"
                           value={experience.startDate}
                           onChange={(e) =>
-                            handleExperienceChange(experience.id, 'startDate', e.target.value)
+                            handleExperienceChange(
+                              experience.id,
+                              "startDate",
+                              e.target.value
+                            )
                           }
                         />
                         <label
@@ -125,7 +138,11 @@ export default function Experience() {
                           className="form-input px-3 py-2 text-gray-400 text-sm md:text-xl"
                           value={experience.endDate}
                           onChange={(e) =>
-                            handleExperienceChange(experience.id, 'endDate', e.target.value)
+                            handleExperienceChange(
+                              experience.id,
+                              "endDate",
+                              e.target.value
+                            )
                           }
                         />
                       </div>
@@ -135,7 +152,9 @@ export default function Experience() {
                         <button
                           type="button"
                           className="mt-2 rounded-md bg-red-500 px-3 py-2 text-sm font-semibold text-white shadow-lg hover:bg-red-600 focus:outline-none focus-visible:ring focus-visible:ring-offset-2 focus-visible:ring-indigo-600"
-                          onClick={() => handleDeleteExperienceClick(experience.id)}
+                          onClick={() =>
+                            handleDeleteExperienceClick(experience.id)
+                          }
                         >
                           Remove Experience
                         </button>
@@ -159,10 +178,14 @@ export default function Experience() {
 
             {/* Form actions */}
             <div className="flex items-center justify-end mt-4 md:mt-0 border-t border-gray-900/10 px-4 py-20 sm:px-8">
-              <button type="button" className="text-lg font-semibold leading-6 text-gray-900">
+              <button
+                type="button"
+                className="text-lg font-semibold leading-6 text-gray-900"
+              >
                 Cancel
               </button>
-              <div className="flex-grow" /> {/* Empty div to push the buttons to the right */}
+              <div className="flex-grow" />{" "}
+              {/* Empty div to push the buttons to the right */}
               <button
                 type="submit"
                 className="rounded-md px-3.5 py-2.5 text-sm font-semibold text-white shadow-lg hover:from-indigo-500 hover:to-fuchsia-500 bg-gradient-to-r from-blue-500 to-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
