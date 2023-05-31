@@ -106,30 +106,10 @@ const App = () => {
             Resumate, your resume helper
           </h2>
           <p className="mt-1 text-base leading-6 text-gray-600">
-            ✅ Type you data and we will make it much better!
+            ✅ Type you data and we will generate you a custom cover letter! ✅
           </p>
 
           <p className="flex justify-center  h-full text-left p-2 mt-1 text-base leading-6 text-gray-600">
-            Imanoeeeeel Comeee Ouuuut Objective To secure a position as Vice
-            President in a company that values my skills and experience. Work
-            Experience Assistant Molested, Everyday • Assisted the Vice
-            President in daily operations and tasks • Developed and maintained
-            relationships with clients and vendors • Managed and tracked project
-            progress and deadlines • Prepared and presented reports to the Vice
-            President • Assisted in the development of new strategies and
-            initiatives • Coordinated and organized meetings and events •
-            Developed and implemented new processes and procedures Education
-            Sexual Engineer • Completed a Bachelor’s degree in Sexual
-            Engineering • Developed a strong understanding of the principles of
-            sexual engineering • Gained experience in the development of sexual
-            engineering projects • Developed a strong understanding of the
-            principles of sexual engineering Skills • Excellent communication
-            skills • Strong organizational and time management skills • Ability
-            to work independently and as part of a team • Ability to manage
-            multiple projects simultaneously • Proficient in Microsoft Office
-            Suite • Ability to work in a fast-paced environment • Ability to
-            think critically and problem solve Online Profiles • LinkedIn:
-            butucanthide • GitHub: ucanrun Contact Email: whereveruare@gmail.com
             {generatedText}
           </p>
         </div>
@@ -479,14 +459,14 @@ const App = () => {
             >
               Save
             </button>
-            <Link to={{ pathname: "/result" }}>
-              <button
-                type="button"
-                className="text-sm font-semibold leading-6 text-gray-900 rounded-lg px-8 py-3 shadow-lg"
-              >
-                Next
-              </button>
-            </Link>
+            {/* <Link to={{ pathname: "/result" }}> */}
+            <button
+              type="button"
+              className="text-sm font-semibold leading-6 text-gray-900 rounded-lg px-8 py-3 shadow-lg"
+            >
+              Next
+            </button>
+            {/* </Link> */}
           </div>
         </form>
       </div>

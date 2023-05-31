@@ -1,11 +1,11 @@
 export const posts = [
   {
     id: 1,
-    title: "ResumeGenie",
+    title: "CoverLetterGenie",
     Emoji: "🧞‍♂️",
-    href: "/personaldata",
+    href: "/signup",
     description:
-      "Crafted resumes in 15 questions. Stand out, capture employers, and boost your career success.",
+      "Crafted cover letter in 15 questions. Stand out, capture employers, and boost your career success.",
     buttonText: "Boost your career 💼",
     buttonGradient:
       "from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500",
