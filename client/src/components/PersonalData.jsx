@@ -38,23 +38,23 @@ const App = () => {
     console.log(inputValue);
   };
 
-  const handleSubmitGPT = async (event) => {
-    event.preventDefault();
-    const result = await generatetext({
-      variables: {
-        prompt: `I am writing a resume, My name is\n name: ${workValue} \n. My responsibilities were web dev. \n . Can you write 10 bullet points for a resume on what I did?`,
-      },
-      // variables: { prompt: inputValue },
-    });
+  // const handleSubmitGPT = async (event) => {
+  //   event.preventDefault();
+  //   const result = await generatetext({
+  //     variables: {
+  //       prompt: `I am writing a resume, My name is\n name: ${workValue} \n. My responsibilities were web dev. \n . Can you write 10 bullet points for a resume on what I did?`,
+  //     },
+  //     // variables: { prompt: inputValue },
+  //   });
 
-    /* --------------------------------- prompt --------------------------------- */
+  //   /* --------------------------------- prompt --------------------------------- */
 
-    /* --------------------------------- prompt --------------------------------- */
+  //   /* --------------------------------- prompt --------------------------------- */
 
-    setgeneratedText(result.data.generateText.data);
+  //   setgeneratedText(result.data.generateText.data);
 
-    // Here you can send the inputValue to OpenAI
-  };
+  //   // Here you can send the inputValue to OpenAI
+  // };
 
   // const [addExperience] = useMutation(ADD_EXPERIENCE);
   // const handleChange = (event) => {
@@ -71,7 +71,13 @@ const App = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    const result = await generatetext({
+      variables: {
+        prompt: `I am writing a resume, My name is\n name:  \n. My job was: ${userFormData.Work} \n . Can you write 10 bullet points for a resume on what I did?`,
+      },
+      // variables: { prompt: inputValue },
+    });
+    setgeneratedText(result.data.generateText.data);
     try {
       const { data } = await addUser({
         variables: { ...userFormData },
@@ -445,7 +451,7 @@ const App = () => {
               Cancel
             </button>
             <button
-              onSubmit={handleSubmitGPT}
+              onSubmit={handleSubmit}
               type="submit"
               className="text-sm font-semibold leading-6 text-white rounded-lg px-8 py-3 shadow-lg bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-red-500 hover:to-yellow-500 hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
