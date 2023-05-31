@@ -2,6 +2,8 @@ import { ApolloClient } from "@apollo/client";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_USER, GENERATE_TEXT } from "../utils/mutations";
+import Result from "./components/Results.jsx";
+import { Link } from "react-router-dom";
 
 // import { set } from "../../../server/models/Education";
 
@@ -102,6 +104,8 @@ const App = () => {
           </h2>
           <p className="mt-1 text-base leading-6 text-gray-600">
             ✅ Type you data and we will make it much better!
+          </p>
+          <p>
             {generatedText}
           </p>
         </div>
@@ -445,18 +449,20 @@ const App = () => {
           </div>
           <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
             <button
-              type="button"
-              className="text-sm font-semibold leading-6 text-gray-900 rounded-lg px-8 py-3 shadow-lg"
-            >
-              Cancel
-            </button>
-            <button
               onSubmit={handleSubmit}
               type="submit"
               className="text-sm font-semibold leading-6 text-white rounded-lg px-8 py-3 shadow-lg bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-red-500 hover:to-yellow-500 hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Save
             </button>
+            <Link to={{pathname:"/result"}}>
+              <button
+                type="button"
+                className="text-sm font-semibold leading-6 text-gray-900 rounded-lg px-8 py-3 shadow-lg"
+              >
+                Next
+              </button>
+            </Link>
           </div>
         </form>
       </div>
