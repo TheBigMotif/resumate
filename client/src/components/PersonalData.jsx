@@ -109,7 +109,7 @@ const App = () => {
             ✅ Type you data and we will make it much better!
           </p>
 
-          <p id="imanoel" className="mt-1 text-base leading-6 text-gray-600">
+          <p className="mt-1 text-base leading-6 text-gray-600">
             {generatedText}
           </p>
         </div>
