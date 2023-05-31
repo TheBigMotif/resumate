@@ -27,7 +27,9 @@ The application will show then the resume information next to the form the user 
 
 
     ```md
-    ![alt text](assets/images/screenshot.png)
+    ![main-page](https://github.com/aaronagraz/resumate/assets/110440237/af2dbbbb-e1fd-4daa-a535-332ffe041f22)
+    ![form1](https://github.com/aaronagraz/resumate/assets/110440237/6440c865-18fd-43bc-8ab9-b4fad267cf0e)
+    ![form2](https://github.com/aaronagraz/resumate/assets/110440237/bc3a0da7-3104-4898-a02f-9f0282a2664b)
     ```
 
 ## Credits
