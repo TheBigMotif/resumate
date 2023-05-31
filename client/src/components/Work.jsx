@@ -11,6 +11,34 @@ const App = () => {
   //   window.location.href = "/personaldata";
   // };
 
+  const [inputValue, setInputValue] = useState("");
+  const [jobDescription, setjobDescription] = useState("");
+  const [generatedText, setgeneratedText] = useState("");
+  const [generatetext, { data }] = useMutation(GENERATE_TEXT);
+  const handleJobDescription = (event) => {
+    setjobDescription(event.target.value);
+
+    console.log(inputValue);
+  };
+
+  const handleSubmitGPT = async (event) => {
+    event.preventDefault();
+    const result = await generatetext({
+      variables: {
+        prompt: `I am writing a resume, I was a \n role: ${inputValue} \n. My responsibilities were ${jobDescription}. \n . Can you write 10 points for a resume on what I did?`,
+      },
+      // variables: { prompt: inputValue },
+    });
+
+    /* --------------------------------- prompt --------------------------------- */
+
+    /* --------------------------------- prompt --------------------------------- */
+
+    setgeneratedText(result.data.generateText.data);
+
+    // Here you can send the inputValue to OpenAI
+  };
+
   const [userFormData, setUserFormData] = useState({
     StartingDate: "",
     EndDate: "",

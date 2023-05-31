@@ -3,7 +3,19 @@ const bcrypt = require("bcrypt");
 // Schema to create a user model
 const userSchema = new Schema(
   {
-    Password: {
+    Work: {
+      type: String,
+      required: true,
+    },
+    Education: {
+      type: String,
+      required: true,
+    },
+    Skills: {
+      type: String,
+      required: true,
+    },
+    Role: {
       type: String,
       required: true,
     },

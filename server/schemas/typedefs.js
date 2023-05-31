@@ -16,6 +16,10 @@ const typeDefs = gql`
 
   type User {
     _id: ID
+    Work: String
+    Role: String
+    Education: String
+    Skills: String
     Password: String
     First: String
     Last: String
@@ -63,7 +67,10 @@ const typeDefs = gql`
   }
   input UserInput {
     _id: ID
-
+    Work: String
+    Role: String
+    Education: String
+    Skills: String
     First: String
     Last: String
     Email: String
@@ -121,7 +128,10 @@ const typeDefs = gql`
   type Mutation {
     addUser(
       Password: String
-
+      Work: String
+      Role: String
+      Education: String
+      Skills: String
       First: String
       Last: String
       Email: String
