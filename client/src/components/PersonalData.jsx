@@ -109,7 +109,27 @@ const App = () => {
             ✅ Type you data and we will make it much better!
           </p>
 
-          <p className="mt-1 text-base leading-6 text-gray-600">
+          <p className="flex justify-center  h-full text-left p-2 mt-1 text-base leading-6 text-gray-600">
+            Imanoeeeeel Comeee Ouuuut Objective To secure a position as Vice
+            President in a company that values my skills and experience. Work
+            Experience Assistant Molested, Everyday • Assisted the Vice
+            President in daily operations and tasks • Developed and maintained
+            relationships with clients and vendors • Managed and tracked project
+            progress and deadlines • Prepared and presented reports to the Vice
+            President • Assisted in the development of new strategies and
+            initiatives • Coordinated and organized meetings and events •
+            Developed and implemented new processes and procedures Education
+            Sexual Engineer • Completed a Bachelor’s degree in Sexual
+            Engineering • Developed a strong understanding of the principles of
+            sexual engineering • Gained experience in the development of sexual
+            engineering projects • Developed a strong understanding of the
+            principles of sexual engineering Skills • Excellent communication
+            skills • Strong organizational and time management skills • Ability
+            to work independently and as part of a team • Ability to manage
+            multiple projects simultaneously • Proficient in Microsoft Office
+            Suite • Ability to work in a fast-paced environment • Ability to
+            think critically and problem solve Online Profiles • LinkedIn:
+            butucanthide • GitHub: ucanrun Contact Email: whereveruare@gmail.com
             {generatedText}
           </p>
         </div>
@@ -453,18 +473,20 @@ const App = () => {
           </div>
           <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
             <button
-              type="button"
-              className="text-sm font-semibold leading-6 text-gray-900 rounded-lg px-8 py-3 shadow-lg"
-            >
-              Cancel
-            </button>
-            <button
               onSubmit={handleSubmit}
               type="submit"
               className="text-sm font-semibold leading-6 text-white rounded-lg px-8 py-3 shadow-lg bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-red-500 hover:to-yellow-500 hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Save
             </button>
+            <Link to={{ pathname: "/result" }}>
+              <button
+                type="button"
+                className="text-sm font-semibold leading-6 text-gray-900 rounded-lg px-8 py-3 shadow-lg"
+              >
+                Next
+              </button>
+            </Link>
           </div>
         </form>
       </div>
