@@ -2,6 +2,7 @@ import { ApolloClient } from "@apollo/client";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_USER, GENERATE_TEXT } from "../utils/mutations";
+import React from "react";
 
 // import { set } from "../../../server/models/Education";
 
@@ -10,6 +11,7 @@ const App = () => {
   //   e.preventDefault();
   //   window.location.href = "/personaldata";
   // };
+  const [user, setUser] = useState(null);
   const [userFormData, setUserFormData] = useState({
     Work: "",
     Role: "",
@@ -73,17 +75,20 @@ const App = () => {
     event.preventDefault();
     const result = await generatetext({
       variables: {
-        prompt: `I am writing a resume, My name is\n name:  \n. My job was: ${userFormData.Work} \n . Can you write 10 bullet points for a resume on what I did?`,
+        prompt: `I am writing a resume for the following role: ${userFormData.Role}, My name is\n name: ${userFormData.First} ${userFormData.Last}  \n. My job was: ${userFormData.Work} \n . Can you write a full page document separated by sections: work experience, education: ${userFormData.Education}, my skills are: ${userFormData.Skills}, this is my linkedin: ${userFormData.Linkedin}, this is my github: ${userFormData.Github}, I am from ${userFormData.City}, ${userFormData.State}, ${userFormData.Country}. I can be reached at ${userFormData.Email} Write this in a professional manner.Use a minimum of 400 words.`,
       },
       // variables: { prompt: inputValue },
     });
     setgeneratedText(result.data.generateText.data);
+
+    // console.log(result.data.generateText.data);
+    // console.log(generatedText);
     try {
       const { data } = await addUser({
         variables: { ...userFormData },
       });
       console.log(data);
-      // window.location.replace("/work");
+      // window.location.replace("/resumefinal");
     } catch (err) {
       console.error(err);
     }
@@ -102,6 +107,9 @@ const App = () => {
           </h2>
           <p className="mt-1 text-base leading-6 text-gray-600">
             ✅ Type you data and we will make it much better!
+          </p>
+
+          <p id="imanoel" className="mt-1 text-base leading-6 text-gray-600">
             {generatedText}
           </p>
         </div>
