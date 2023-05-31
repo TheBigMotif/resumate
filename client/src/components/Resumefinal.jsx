@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 
 export default function Comingsoon() {
@@ -12,11 +12,12 @@ export default function Comingsoon() {
           <body class="h-full">
           ```
         */}
+
       <div className="flex flex-col min-h-screen bg-slate-100 justify-center items-center">
         <main className="max-w-lg px-6 py-24 sm:py-32 sm:px-8">
           <div className="text-5xl sm:text-3xl lg:text-6xl mb-2">⏳</div>
           <h1 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-            New features coming soon! 🚀
+            New features coming soon! 🚀{user}
           </h1>
           <p className="  mt-6 text-base leading-7 text-gray-600">
             Join us on our coding journey at Resumate.ai, where we tirelessly
