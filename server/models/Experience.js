@@ -2,27 +2,22 @@ const { Schema, Types } = require("mongoose");
 
 const experienceSchema = new Schema(
   {
-    experienceId: {
+    ExperienceId: {
       type: Schema.Types.ObjectId,
       default: () => new Types.ObjectId(),
     },
-    company: {
+    Company: {
       type: String,
       required: true,
       maxlength: 50,
       minlength: 3,
     },
-    degree: {
+    Degree: {
       type: String,
       required: true,
       maxlength: 50,
     },
-    year: {
-      type: Number,
-      required: true,
-      maxlength: 4,
-      minlength: 4,
-    },
+
     StartingDate: {
       type: String,
       required: true,
@@ -31,11 +26,11 @@ const experienceSchema = new Schema(
       type: String,
       required: true,
     },
-    ROLE: {
+    Role: {
       type: String,
       required: true,
     },
-    Responsabilities: {
+    Responsibilities: {
       type: String,
       required: true,
     },

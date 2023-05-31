@@ -1,115 +1,173 @@
-import { useState } from 'react';
+import { ApolloClient } from "@apollo/client";
+import { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { ADD_EDUCATION } from "../utils/mutations";
 
-export default function Experience() {
-  const [skills, setSkills] = useState([
-    {
-      id: 1,
-      value: 'Communication, Teamwork, Leadership, Problem-solving, Adaptability, Time management',
-    },
-  ]);
+// import { set } from "../../../server/models/Education";
 
-  const handleAddSkillsClick = () => {
-    setSkills((prevSkills) => [
-      ...prevSkills,
-      {
-        id: prevSkills.length + 1,
-        value: '',
-      },
-    ]);
+const App = () => {
+  // const handleFormSubmit = (e) => {
+  //   e.preventDefault();
+  //   window.location.href = "/personaldata";
+  // };
+
+  const [userFormData, setUserFormData] = useState({
+    University: "",
+    Degree: "",
+    StartingDate: "",
+    EndDate: "",
+  });
+
+  const [addEducation] = useMutation(ADD_EDUCATION);
+  // const handleChange = (event) => {
+  //   setInputValue(event.target.value);
+  // };
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setUserFormData({ ...userFormData, [name]: value });
   };
 
-  const handleDeleteSkillsClick = (id) => {
-    setSkills((prevSkills) => prevSkills.filter((skill) => skill.id !== id));
-  };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-  const handleSkillsChange = (id, value) => {
-    setSkills((prevSkills) =>
-      prevSkills.map((skill) => (skill.id === id ? { ...skill, value } : skill))
-    );
+    try {
+      const { data } = await addEducation({
+        variables: { ...userFormData },
+      });
+      console.log(data);
+      window.location.replace("/education");
+    } catch (err) {
+      console.error(err);
+    }
+
+    //
+
+    // Here you can send the inputValue to OpenAI
   };
 
   return (
-    <div className="mt-20 ml-28 pr-20">
-      <div className="space-y-10 divide-y divide-gray-900/10">
-        <div className="grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-3">
-          {/* Section header */}
-          <div className="px-14 sm:px-0">
-            <h2 className="text-base font-semibold leading-7 text-gray-900">Soft Skills</h2>
-            <p className="mt-1 text-sm leading-6 text-gray-600">
-              Tell us about your soft skills (need copywriting)
-            </p>
-          </div>
+    <div className="px-24 bg-gray-50">
+      <div className="grid grid-cols-1 gap-x-8 gap-y-8 pt-10 md:grid-cols-3">
+        <div className="px-4 sm:px-0">
+          <h2 className="text-2xl font-semibold leading-7 text-gray-900">
+            Personal Information
+          </h2>
+          <p className="mt-1 text-base leading-6 text-gray-600">
+            ✅ To prevent any mistakes, please review the information carefully
+            for accurate resume creation.
+          </p>
+        </div>
 
-          {/* Form */}
-          <form className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2 px-4 sm:px-40">
-            <div className="px-4 py-6 sm:p-8">
-              <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                {/* Form input */}
-                {skills.map((skill) => (
-                  <div className="col-span-full" key={skill.id}>
-                    <label htmlFor={`skill-${skill.id}`} className="block text-sm font-medium leading-6 text-gray-900">
-                      Soft Skills
-                    </label>
-        
-                    <div className="mt-2">
-                      <textarea
-                        id={`skill-${skill.id}`}
-                        name={`skill-${skill.id}`}
-                        rows={3}
-                        placeholder="Add more soft skills..."
-                        className="block w-full rounded-md border-0 px-4 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                        value={skill.value}
-                        onChange={(e) => handleSkillsChange(skill.id, e.target.value)}
-                      />
-                    </div>
-                    {skills.length > 1 && (
-                      <div className="flex justify-end">
-                        <button
-                          type="button"
-                          className="mt-2 rounded-md bg-red-400 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus:outline-none focus-visible:ring focus-visible:ring-offset-2 focus-visible:ring-indigo-600"
-                          onClick={() => handleDeleteSkillsClick(skill.id)}
-                        >
-                          Remove Skill
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                ))}
-                <div className="col-span-full">
-                  <div className="flex justify-end">
-                    <button
-                      type="button"
-                      className="mt-5 rounded-md bg-green-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-600 focus:outline-none focus-visible:ring focus-visible:ring-offset-2 focus-visible:ring-indigo-600"
-                      onClick={handleAddSkillsClick}
-                    >
-                      + Add Skills
-                    </button>
-                  </div>
+        <form
+          onSubmit={handleSubmit}
+          action="#"
+          className="my-24 bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2 md:pl-12"
+        >
+          <div className="px-4 py-6 sm:p-8">
+            <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+              <div className="sm:col-span-3">
+                <label
+                  htmlFor="first-name"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Starting Date
+                </label>
+                <div className="mt-2">
+                  <input
+                    value={userFormData.StartingDate}
+                    onChange={handleInputChange}
+                    type="text"
+                    name="StartingDate"
+                    id="first-name"
+                    placeholder="First name"
+                    autoComplete="given-name"
+                    className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+
+              <div className="sm:col-span-3">
+                <label
+                  htmlFor="last-name"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  End Date
+                </label>
+                <div className="mt-2">
+                  <input
+                    value={userFormData.EndDate}
+                    onChange={handleInputChange}
+                    type="text"
+                    placeholder="Botti"
+                    name="EndDate"
+                    id="last-name"
+                    autoComplete="family-name"
+                    className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+
+              <div className="sm:col-span-4">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  University
+                </label>
+                <div className="mt-2">
+                  <input
+                    value={userFormData.University}
+                    onChange={handleInputChange}
+                    id="email"
+                    placeholder="mauricio@resumate.com"
+                    name="University"
+                    type="email"
+                    autoComplete="email"
+                    className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+              <div className="sm:col-span-4">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Degree
+                </label>
+                <div className="mt-2">
+                  <input
+                    value={userFormData.Degree}
+                    onChange={handleInputChange}
+                    id="password"
+                    placeholder="mauricio@resumate.com"
+                    name="Degree"
+                    type="password"
+                    autoComplete="email"
+                    className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
                 </div>
               </div>
             </div>
-
-            {/* Form actions */}
-            <div className="flex items-center justify-end mt-4 md:mt-0 border-t border-gray-900/10 px-4 py-20 sm:px-8">
-              <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
-                Cancel
-              </button>
-              <div className="flex-grow" /> {/* Empty div to push the buttons to the right */}
-              <button
-                type="submit"
-                className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus-visible:ring focus-visible:ring-offset-2 focus-visible:ring-indigo-600"
-              >
-                Save
-              </button>
-            </div>
-          </form>
-        </div>
-
-        {/* Second grid */}
-        <div className="grid grid-cols-1 gap-x-8 gap-y-8 pt-10 md:grid-cols-3">
-          {/* Content for the second grid */}
-        </div>
+          </div>
+          <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
+            <button
+              type="button"
+              className="text-sm font-semibold leading-6 text-gray-900 rounded-lg px-8 py-3 shadow-lg"
+            >
+              Cancel
+            </button>
+            <button
+              // onSubmit={handleFormSubmit}
+              type="submit"
+              className="text-sm font-semibold leading-6 text-white rounded-lg px-8 py-3 shadow-lg bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-red-500 hover:to-yellow-500 hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              Save
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );
-}
+};
+
+export default App;

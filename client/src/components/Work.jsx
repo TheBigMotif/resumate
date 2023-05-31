@@ -1,201 +1,248 @@
+import { ApolloClient } from "@apollo/client";
 import { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { ADD_EXPERIENCE } from "../utils/mutations";
 
-export default function Experience() {
-  const [experiences, setExperiences] = useState([
-    {
-      id: 1,
-      companyName: "",
-      jobTitle: "",
-      startDate: "",
-      endDate: "",
-    },
-  ]);
+// import { set } from "../../../server/models/Education";
 
-  const handleAddExperienceClick = () => {
-    setExperiences((prevExperiences) => [
-      ...prevExperiences,
-      {
-        id: prevExperiences.length + 1,
-        companyName: "",
-        jobTitle: "",
-        startDate: "",
-        endDate: "",
+const App = () => {
+  // const handleFormSubmit = (e) => {
+  //   e.preventDefault();
+  //   window.location.href = "/personaldata";
+  // };
+
+  const [inputValue, setInputValue] = useState("");
+  const [jobDescription, setjobDescription] = useState("");
+  const [generatedText, setgeneratedText] = useState("");
+  const [generatetext, { data }] = useMutation(GENERATE_TEXT);
+  const handleJobDescription = (event) => {
+    setjobDescription(event.target.value);
+
+    console.log(inputValue);
+  };
+
+  const handleSubmitGPT = async (event) => {
+    event.preventDefault();
+    const result = await generatetext({
+      variables: {
+        prompt: `I am writing a resume, I was a \n role: ${inputValue} \n. My responsibilities were ${jobDescription}. \n . Can you write 10 points for a resume on what I did?`,
       },
-    ]);
+      // variables: { prompt: inputValue },
+    });
+
+    /* --------------------------------- prompt --------------------------------- */
+
+    /* --------------------------------- prompt --------------------------------- */
+
+    setgeneratedText(result.data.generateText.data);
+
+    // Here you can send the inputValue to OpenAI
   };
 
-  const handleDeleteExperienceClick = (id) => {
-    setExperiences((prevExperiences) =>
-      prevExperiences.filter((experience) => experience.id !== id)
-    );
+  const [userFormData, setUserFormData] = useState({
+    StartingDate: "",
+    EndDate: "",
+    Company: "",
+    Degree: "",
+    Responsibilities: "",
+    Role: "",
+  });
+
+  const [addExperience] = useMutation(ADD_EXPERIENCE);
+  // const handleChange = (event) => {
+  //   setInputValue(event.target.value);
+  // };
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setUserFormData({ ...userFormData, [name]: value });
   };
 
-  const handleExperienceChange = (id, field, value) => {
-    setExperiences((prevExperiences) =>
-      prevExperiences.map((experience) =>
-        experience.id === id ? { ...experience, [field]: value } : experience
-      )
-    );
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const { data } = await addExperience({
+        variables: { ...userFormData },
+      });
+      console.log(data);
+      window.location.replace("/education");
+    } catch (err) {
+      console.error(err);
+    }
+
+    //
+
+    // Here you can send the inputValue to OpenAI
   };
 
   return (
-    <div className="pt-20 px-28 pb-28 bg-gray-50">
-      <div className="space-y-10 divide-y divide-gray-900/10">
-        <div className="grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-3">
-          {/* Section header */}
-          <div className="px-14 sm:px-0">
-            <h2 className="font-semibold leading-7 text-gray-900 text-2xl">
-              Experience 💼
-            </h2>
-            <p className="mt-1 text-base leading-6 text-gray-600">
-              Tell us about your work experience (need copywriting)
-            </p>
-          </div>
+    <div className="px-24 bg-gray-50">
+      <div className="grid grid-cols-1 gap-x-8 gap-y-8 pt-10 md:grid-cols-3">
+        <div className="px-4 sm:px-0">
+          <h2 className="text-2xl font-semibold leading-7 text-gray-900">
+            Personal Information
+          </h2>
+          <p className="mt-1 text-base leading-6 text-gray-600">
+            ✅ To prevent any mistakes, please review the information carefully
+            for accurate resume creation.
+          </p>
+        </div>
 
-          {/* Form */}
-          <form className="bg-white ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2 px-4 sm:px-40">
-            <div className="px-0 py-6 sm:p-8 shadow-lg">
-              <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                {/* Form input */}
-                {experiences.map((experience) => (
-                  <div className="col-span-full" key={experience.id}>
-                    <div className="isolate -space-y-px rounded-md shadow-sm">
-                      <div className="relative rounded-md rounded-b-none px-3 pb-1.5 pt-2.5 ring-1 ring-inset ring-gray-300 focus-within:z-10 focus-within:ring-2 focus-within:ring-teal-400">
-                        <label
-                          htmlFor={`company-name-${experience.id}`}
-                          className="mt-2 block text-base font-medium text-gray-900"
-                        >
-                          Company Name
-                        </label>
-                        <input
-                          type="text"
-                          name={`company-name-${experience.id}`}
-                          id={`company-name-${experience.id}`}
-                          className="form-input px-3 py-2 text-sm md:text-xl"
-                          placeholder="Example Company"
-                          value={experience.companyName}
-                          onChange={(e) =>
-                            handleExperienceChange(
-                              experience.id,
-                              "companyName",
-                              e.target.value
-                            )
-                          }
-                        />
-                        <label
-                          htmlFor={`job-title-${experience.id}`}
-                          className="mt-2 block text-base font-medium text-gray-900"
-                        >
-                          Job Title
-                        </label>
-                        <input
-                          type="text"
-                          name={`job-title-${experience.id}`}
-                          id={`job-title-${experience.id}`}
-                          className="form-input px-3 py-2 text-sm md:text-xl"
-                          placeholder="Front-end Developer"
-                          value={experience.jobTitle}
-                          onChange={(e) =>
-                            handleExperienceChange(
-                              experience.id,
-                              "jobTitle",
-                              e.target.value
-                            )
-                          }
-                        />
-                      </div>
-                      <div className="relative rounded-md rounded-t-none px-3 pb-1.5 pt-2.5 ring-1 ring-inset ring-gray-300 focus-within:z-10 focus-within:ring-2 focus-within:ring-teal-400">
-                        <label
-                          htmlFor={`start-date-${experience.id}`}
-                          className="mt-4 block text-base font-medium text-gray-900"
-                        >
-                          Start Date
-                        </label>
-                        <input
-                          type="date"
-                          name={`start-date-${experience.id}`}
-                          id={`start-date-${experience.id}`}
-                          className="form-input px-3 py-2 text-gray-400 text-sm md:text-xl"
-                          value={experience.startDate}
-                          onChange={(e) =>
-                            handleExperienceChange(
-                              experience.id,
-                              "startDate",
-                              e.target.value
-                            )
-                          }
-                        />
-                        <label
-                          htmlFor={`end-date-${experience.id}`}
-                          className="mt-4 block text-base font-medium text-gray-900"
-                        >
-                          End Date
-                        </label>
-                        <input
-                          type="date"
-                          name={`end-date-${experience.id}`}
-                          id={`end-date-${experience.id}`}
-                          className="form-input px-3 py-2 text-gray-400 text-sm md:text-xl"
-                          value={experience.endDate}
-                          onChange={(e) =>
-                            handleExperienceChange(
-                              experience.id,
-                              "endDate",
-                              e.target.value
-                            )
-                          }
-                        />
-                      </div>
-                    </div>
-                    {experiences.length > 1 && (
-                      <div className="flex justify-end">
-                        <button
-                          type="button"
-                          className="mt-2 rounded-md bg-red-500 px-3 py-2 text-sm font-semibold text-white shadow-lg hover:bg-red-600 focus:outline-none focus-visible:ring focus-visible:ring-offset-2 focus-visible:ring-indigo-600"
-                          onClick={() =>
-                            handleDeleteExperienceClick(experience.id)
-                          }
-                        >
-                          Remove Experience
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                ))}
-                <div className="col-span-full">
-                  <div className="flex justify-end">
-                    <button
-                      type="button"
-                      className="mt-5 rounded-md bg-emerald-500 px-3 py-2 text-sm font-semibold text-white shadow-lg hover:bg-emerald-600 focus:outline-none focus-visible:ring focus-visible:ring-offset-2 focus-visible:ring-indigo-600"
-                      onClick={handleAddExperienceClick}
-                    >
-                      + Add Experience
-                    </button>
-                  </div>
+        <form
+          onSubmit={handleSubmit}
+          action="#"
+          className="my-24 bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2 md:pl-12"
+        >
+          <div className="px-4 py-6 sm:p-8">
+            <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+              <div className="sm:col-span-3">
+                <label
+                  htmlFor="first-name"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Starting Date
+                </label>
+                <div className="mt-2">
+                  <input
+                    value={userFormData.StartingDate}
+                    onChange={handleInputChange}
+                    type="text"
+                    name="StartingDate"
+                    id="first-name"
+                    placeholder="First name"
+                    autoComplete="given-name"
+                    className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+
+              <div className="sm:col-span-3">
+                <label
+                  htmlFor="last-name"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  End Date
+                </label>
+                <div className="mt-2">
+                  <input
+                    value={userFormData.EndDate}
+                    onChange={handleInputChange}
+                    type="text"
+                    placeholder="Botti"
+                    name="EndDate"
+                    id="last-name"
+                    autoComplete="family-name"
+                    className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+
+              <div className="sm:col-span-4">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Company Name
+                </label>
+                <div className="mt-2">
+                  <input
+                    value={userFormData.Company}
+                    onChange={handleInputChange}
+                    id="email"
+                    placeholder="mauricio@resumate.com"
+                    name="Company"
+                    type="email"
+                    autoComplete="email"
+                    className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+              <div className="sm:col-span-4">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Degree
+                </label>
+                <div className="mt-2">
+                  <input
+                    value={userFormData.Degree}
+                    onChange={handleInputChange}
+                    id="password"
+                    placeholder="mauricio@resumate.com"
+                    name="Degree"
+                    type="password"
+                    autoComplete="email"
+                    className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+              <div className="sm:col-span-4">
+                <label
+                  htmlFor="github"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Responsibilities
+                </label>
+                <div className="mt-2 flex rounded-md shadow-sm">
+                  <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 px-3 text-gray-500 sm:text-sm">
+                    Github.com/
+                  </span>
+                  <input
+                    value={userFormData.Responsibilities}
+                    onChange={handleInputChange}
+                    id="github"
+                    name="Responsibilities"
+                    type="text"
+                    autoComplete="no"
+                    className="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+
+              <div className="sm:col-span-4">
+                <label
+                  htmlFor="linkedin"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Role
+                </label>
+                <div className="mt-2 flex rounded-md shadow-sm">
+                  <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 px-3 text-gray-500 sm:text-sm">
+                    Linkedin.com/in/
+                  </span>
+                  <input
+                    value={userFormData.Role}
+                    onChange={handleInputChange}
+                    id="linkedin"
+                    name="Role"
+                    type="text"
+                    autoComplete="off"
+                    className="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
                 </div>
               </div>
             </div>
-
-            {/* Form actions */}
-            <div className="flex items-center justify-end mt-4 md:mt-0 border-t border-gray-900/10 px-4 py-20 sm:px-8">
-              <button
-                type="button"
-                className="text-lg font-semibold leading-6 text-gray-900"
-              >
-                Cancel
-              </button>
-              <div className="flex-grow" />{" "}
-              {/* Empty div to push the buttons to the right */}
-              <button
-                type="submit"
-                className="rounded-md px-3.5 py-2.5 text-sm font-semibold text-white shadow-lg hover:from-indigo-500 hover:to-fuchsia-500 bg-gradient-to-r from-blue-500 to-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                Save
-              </button>
-            </div>
-          </form>
-        </div>
+          </div>
+          <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
+            <button
+              type="button"
+              className="text-sm font-semibold leading-6 text-gray-900 rounded-lg px-8 py-3 shadow-lg"
+            >
+              Cancel
+            </button>
+            <button
+              // onSubmit={handleFormSubmit}
+              type="submit"
+              className="text-sm font-semibold leading-6 text-white rounded-lg px-8 py-3 shadow-lg bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-red-500 hover:to-yellow-500 hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              Save
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );
-}
+};
+
+export default App;

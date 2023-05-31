@@ -3,7 +3,7 @@ export const posts = [
     id: 1,
     title: "ResumeGenie",
     Emoji: "🧞‍♂️",
-    href: "/signup",
+    href: "/personaldata",
     description:
       "Crafted resumes in 15 questions. Stand out, capture employers, and boost your career success.",
     buttonText: "Boost your career 💼",
@@ -14,7 +14,7 @@ export const posts = [
     id: 2,
     title: "MoneyWise",
     Emoji: "💸",
-    href: "#",
+    href: "/comingsoon",
     description:
       "Take charge of your finances, input numbers, obtain customized templates, save money, and achieve financial goals.",
     buttonText: "Start organizing 📈",
@@ -25,7 +25,7 @@ export const posts = [
     id: 3,
     title: "Dating Booster",
     Emoji: "❤️‍🔥",
-    href: "#",
+    href: "/comingsoon",
     description:
       "Share crush details, let AI work its magic. Discover the ideal recipe to ignite a deep connection.",
     buttonText: "Spark connections ✨",
@@ -36,7 +36,7 @@ export const posts = [
     id: 4,
     title: "LawAssist",
     Emoji: "⚖️",
-    href: "#",
+    href: "/comingsoon",
     description:
       "Create contracts, save time, and costs. Legal solutions at your fingertips. Say goodbye to bureaucracy!",
     buttonText: "Access legal solutions 📝",
@@ -46,7 +46,7 @@ export const posts = [
     id: 5,
     title: "EZ Plan",
     Emoji: "🥪",
-    href: "#",
+    href: "/comingsoon",
     description:
       "Personalized nutrition plans, favorite foods, and health goals. Transform your diet, one bite at a time.",
     buttonText: "Improve your nutrition 🍽️",
@@ -56,7 +56,7 @@ export const posts = [
     id: 6,
     title: "AdCraft",
     Emoji: "🎯",
-    href: "#",
+    href: "/comingsoon",
     description:
       "Unlock creative marketing messages. Generate ideas, create engaging content, and execute custom strategies effortlessly.",
     buttonText: "Craft your marketing 🚀",

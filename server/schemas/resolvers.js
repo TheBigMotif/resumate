@@ -54,16 +54,24 @@ const resolvers = {
     },
     //generateText is the name of mutation,
     //generatetext is the name of the imported function
-    generateText: async (_, args) => {
+    generateText: async (_, { prompt }) => {
       try {
-        const prompt = promptCase(args);
-
         const result = await generatetext(prompt);
 
         return result;
       } catch (error) {
         throw new Error("Failed to generate text");
       }
+      // generateText: async (_, args) => {
+      //   try {
+      //     const prompt = promptCase(args);
+
+      //     const result = await generatetext(prompt);
+
+      //     return result;
+      //   } catch (error) {
+      //     throw new Error("Failed to generate text");
+      //   }
     },
     addResponse: async (parent, { responseData }, context) => {
       if (context.user) {

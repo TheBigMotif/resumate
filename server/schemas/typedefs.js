@@ -16,41 +16,45 @@ const typeDefs = gql`
 
   type User {
     _id: ID
-    userName: String
-    first: String
+    Work: String
+    Role: String
+    Education: String
+    Skills: String
+    Password: String
+    First: String
     Last: String
-    email: String
+    Email: String
     DOB: String
     Phone: String
     City: String
     State: String
     Country: String
-    github: String
+    Github: String
     Linkedin: String
     responses: [Response]
   }
   type Response {
-    technicalSkills: [String]
-    experience: [Experience]
-    education: [Education]
-    skills: [Skills]
-    interest: [Interest]
+    TechnicalSkills: [String]
+    Experience: [Experience]
+    Education: [Education]
+    Skills: [Skills]
+    Interest: [Interest]
   }
   type Experience {
     experienceId: ID
-    company: String
-    degree: String
-    year: Int
+    Company: String
+    Degree: String
+    StartingDate: String
+    Role: String
+    Responsibilities: String
+    EndDate: String
   }
   type Education {
     educationId: ID
-    university: String
-    degree: String
-    year: Int
-    CompanyName: String
+    University: String
+    Degree: String
     StartingDate: String
     EndDate: String
-    DegreeTitle: String
   }
   type Skills {
     skillId: ID
@@ -63,16 +67,19 @@ const typeDefs = gql`
   }
   input UserInput {
     _id: ID
-    userName: String
-    first: String
+    Work: String
+    Role: String
+    Education: String
+    Skills: String
+    First: String
     Last: String
-    email: String
+    Email: String
     DOB: String
     Phone: String
     City: String
     State: String
     Country: String
-    github: String
+    Github: String
     Linkedin: String
     responses: [ResponseInput]
   }
@@ -84,20 +91,20 @@ const typeDefs = gql`
     interest: [InterestInput]
   }
   input ExperienceInput {
-    experienceId: ID
-    company: String
-    degree: String
-    year: Int
+    ExperienceId: ID
+    Company: String
+    Degree: String
+    StartingDate: String
+    Role: String
+    Responsibilities: String
+    EndDate: String
   }
   input EducationInput {
     educationId: ID
-    university: String
-    degree: String
-    year: Int
-    CompanyName: String
+    University: String
+    Degree: String
     StartingDate: String
     EndDate: String
-    DegreeTitle: String
   }
   input SkillsInput {
     skillId: ID
@@ -120,19 +127,24 @@ const typeDefs = gql`
   }
   type Mutation {
     addUser(
-      userName: String
-      first: String
+      Password: String
+      Work: String
+      Role: String
+      Education: String
+      Skills: String
+      First: String
       Last: String
-      email: String
+      Email: String
       DOB: String
       Phone: String
       City: String
       State: String
       Country: String
-      github: String
+      Github: String
       Linkedin: String
     ): Auth
     login(email: String, password: String): Auth
+    addData(userData: UserInput): User
     addResponse(responseData: ResponseInput): User
     addExperience(experienceData: ExperienceInput): User
     addEducation(educationeData: EducationInput): User

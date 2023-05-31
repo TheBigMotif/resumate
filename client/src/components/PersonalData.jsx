@@ -1,29 +1,88 @@
 import { ApolloClient } from "@apollo/client";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { GENERATE_TEXT } from "../utils/mutations";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ADD_USER, GENERATE_TEXT } from "../utils/mutations";
+
+// import { set } from "../../../server/models/Education";
 
 const App = () => {
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    window.location.href = "/personaldata";
-  };
+  // const handleFormSubmit = (e) => {
+  //   e.preventDefault();
+  //   window.location.href = "/personaldata";
+  // };
+  const [userFormData, setUserFormData] = useState({
+    Work: "",
+    Role: "",
+    Education: "",
+    Skills: "",
+    First: "",
+    Last: "",
+    DOB: "",
+    Phone: "",
+    City: "",
+    State: "",
+    Linkedin: "",
+    Github: "",
+    Country: "",
+    Email: "",
+    Password: "",
+  });
 
-  const [inputValue, setInputValue] = useState("");
+  const [workValue, setworkValue] = useState("");
+  // const [jobDescription, setjobDescription] = useState("");
   const [generatedText, setgeneratedText] = useState("");
   const [generatetext, { data }] = useMutation(GENERATE_TEXT);
+  const handleJobDescription = (event) => {
+    setjobDescription(event.target.value);
+
+    console.log(inputValue);
+  };
+
+  const handleSubmitGPT = async (event) => {
+    event.preventDefault();
+    const result = await generatetext({
+      variables: {
+        prompt: `I am writing a resume, My name is\n name: ${workValue} \n. My responsibilities were web dev. \n . Can you write 10 bullet points for a resume on what I did?`,
+      },
+      // variables: { prompt: inputValue },
+    });
+
+    /* --------------------------------- prompt --------------------------------- */
+
+    /* --------------------------------- prompt --------------------------------- */
+
+    setgeneratedText(result.data.generateText.data);
+
+    // Here you can send the inputValue to OpenAI
+  };
+
+  // const [addExperience] = useMutation(ADD_EXPERIENCE);
+  // const handleChange = (event) => {
+  //   setInputValue(event.target.value);
+  // };
+  const [addUser] = useMutation(ADD_USER);
   const handleChange = (event) => {
     setInputValue(event.target.value);
-    console.log(inputValue);
+  };
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setUserFormData({ ...userFormData, [name]: value });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const result = await generatetext({
-      variables: { jobDescription: inputValue, prompt: "WORK" },
-    });
-    setgeneratedText(result.data.generateText.data);
+
+    try {
+      const { data } = await addUser({
+        variables: { ...userFormData },
+      });
+      console.log(data);
+      // window.location.replace("/work");
+    } catch (err) {
+      console.error(err);
+    }
+
+    //
 
     // Here you can send the inputValue to OpenAI
   };
@@ -33,11 +92,10 @@ const App = () => {
       <div className="grid grid-cols-1 gap-x-8 gap-y-8 pt-10 md:grid-cols-3">
         <div className="px-4 sm:px-0">
           <h2 className="text-2xl font-semibold leading-7 text-gray-900">
-            Personal Information
+            Resumate, your resume helper
           </h2>
           <p className="mt-1 text-base leading-6 text-gray-600">
-            ✅ To prevent any mistakes, please review the information carefully
-            for accurate resume creation.
+            ✅ Type you data and we will make it much better!
             {generatedText}
           </p>
         </div>
@@ -58,10 +116,11 @@ const App = () => {
                 </label>
                 <div className="mt-2">
                   <input
-                    value={inputValue}
-                    onChange={handleChange}
+                    value={userFormData.First}
+                    onChange={handleInputChange}
+                    textcontent={workValue}
                     type="text"
-                    name="first-name"
+                    name="First"
                     id="first-name"
                     placeholder="First name"
                     autoComplete="given-name"
@@ -79,9 +138,11 @@ const App = () => {
                 </label>
                 <div className="mt-2">
                   <input
+                    value={userFormData.Last}
+                    onChange={handleInputChange}
                     type="text"
                     placeholder="Botti"
-                    name="last-name"
+                    name="Last"
                     id="last-name"
                     autoComplete="family-name"
                     className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -98,16 +159,37 @@ const App = () => {
                 </label>
                 <div className="mt-2">
                   <input
+                    value={userFormData.Email}
+                    onChange={handleInputChange}
                     id="email"
                     placeholder="mauricio@resumate.com"
-                    name="email"
+                    name="Email"
                     type="email"
                     autoComplete="email"
                     className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
-
+              <div className="sm:col-span-4">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Password
+                </label>
+                <div className="mt-2">
+                  <input
+                    value={userFormData.Password}
+                    onChange={handleInputChange}
+                    id="password"
+                    placeholder="mauricio@resumate.com"
+                    name="Password"
+                    type="password"
+                    autoComplete="email"
+                    className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
               <div className="sm:col-span-4">
                 <label
                   htmlFor="github"
@@ -120,8 +202,10 @@ const App = () => {
                     Github.com/
                   </span>
                   <input
+                    value={userFormData.Github}
+                    onChange={handleInputChange}
                     id="github"
-                    name="github"
+                    name="Github"
                     type="text"
                     autoComplete="no"
                     className="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -141,8 +225,10 @@ const App = () => {
                     Linkedin.com/in/
                   </span>
                   <input
+                    value={userFormData.Linkedin}
+                    onChange={handleInputChange}
                     id="linkedin"
-                    name="linkedin"
+                    name="Linkedin"
                     type="text"
                     autoComplete="off"
                     className="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -159,8 +245,10 @@ const App = () => {
                 </label>
                 <div className="mt-2">
                   <select
+                    value={userFormData.Country}
+                    onChange={handleInputChange}
                     id="country"
-                    name="country"
+                    name="Country"
                     autoComplete="country-name"
                     className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                   >
@@ -227,8 +315,10 @@ const App = () => {
                 </label>
                 <div className="mt-2">
                   <input
+                    value={userFormData.City}
+                    onChange={handleInputChange}
                     type="text"
-                    name="city"
+                    name="City"
                     id="city"
                     placeholder="New York City"
                     autoComplete="address-level2"
@@ -246,12 +336,102 @@ const App = () => {
                 </label>
                 <div className="mt-2">
                   <input
+                    value={userFormData.State}
+                    onChange={handleInputChange}
                     type="text"
-                    name="region"
+                    name="State"
                     placeholder="New York"
                     id="region"
                     autoComplete="address-level1"
                     className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+              <div className="sm:col-span-4">
+                <label
+                  htmlFor="github"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Work
+                </label>
+                <div className="mt-2 flex rounded-md shadow-sm">
+                  <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 px-3 text-gray-500 sm:text-sm">
+                    Work Experience
+                  </span>
+                  <input
+                    value={userFormData.Work}
+                    onChange={handleInputChange}
+                    id="Work"
+                    name="Work"
+                    type="text"
+                    autoComplete="no"
+                    className="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+              <div className="sm:col-span-4">
+                <label
+                  htmlFor="github"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Role
+                </label>
+                <div className="mt-2 flex rounded-md shadow-sm">
+                  <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 px-3 text-gray-500 sm:text-sm">
+                    Position
+                  </span>
+                  <input
+                    value={userFormData.Role}
+                    onChange={handleInputChange}
+                    id="Role"
+                    name="Role"
+                    type="text"
+                    autoComplete="no"
+                    className="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+              <div className="sm:col-span-4">
+                <label
+                  htmlFor="github"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Education
+                </label>
+                <div className="mt-2 flex rounded-md shadow-sm">
+                  <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 px-3 text-gray-500 sm:text-sm">
+                    Degree
+                  </span>
+                  <input
+                    value={userFormData.Education}
+                    onChange={handleInputChange}
+                    id="Education"
+                    name="Education"
+                    type="text"
+                    autoComplete="no"
+                    className="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+              <div className="sm:col-span-4">
+                <label
+                  htmlFor="github"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Skills
+                </label>
+                <div className="mt-2 flex rounded-md shadow-sm">
+                  <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 px-3 text-gray-500 sm:text-sm">
+                    Skills
+                  </span>
+                  <input
+                    value={userFormData.Skills}
+                    onChange={handleInputChange}
+                    id="Skills"
+                    name="Skills"
+                    type="text"
+                    autoComplete="no"
+                    className="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
@@ -265,7 +445,7 @@ const App = () => {
               Cancel
             </button>
             <button
-              onSubmit={handleFormSubmit}
+              onSubmit={handleSubmitGPT}
               type="submit"
               className="text-sm font-semibold leading-6 text-white rounded-lg px-8 py-3 shadow-lg bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-red-500 hover:to-yellow-500 hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
