@@ -30,27 +30,27 @@ const typeDefs = gql`
     responses: [Response]
   }
   type Response {
-    technicalSkills: [String]
-    experience: [Experience]
-    education: [Education]
-    skills: [Skills]
-    interest: [Interest]
+    TechnicalSkills: [String]
+    Experience: [Experience]
+    Education: [Education]
+    Skills: [Skills]
+    Interest: [Interest]
   }
   type Experience {
     experienceId: ID
-    company: String
-    degree: String
-    year: Int
+    Company: String
+    Degree: String
+    StartingDate: String
+    Role: String
+    Responsibilities: String
+    EndDate: String
   }
   type Education {
     educationId: ID
-    university: String
-    degree: String
-    year: Int
-    CompanyName: String
+    University: String
+    Degree: String
     StartingDate: String
     EndDate: String
-    DegreeTitle: String
   }
   type Skills {
     skillId: ID
@@ -84,20 +84,20 @@ const typeDefs = gql`
     interest: [InterestInput]
   }
   input ExperienceInput {
-    experienceId: ID
-    company: String
-    degree: String
-    year: Int
+    ExperienceId: ID
+    Company: String
+    Degree: String
+    StartingDate: String
+    Role: String
+    Responsibilities: String
+    EndDate: String
   }
   input EducationInput {
     educationId: ID
-    university: String
-    degree: String
-    year: Int
-    CompanyName: String
+    University: String
+    Degree: String
     StartingDate: String
     EndDate: String
-    DegreeTitle: String
   }
   input SkillsInput {
     skillId: ID

@@ -30,6 +30,43 @@ export const CREATE_VOTE = gql`
     }
   }
 `;
+
+export const ADD_EXPERIENCE = gql`
+  mutation addExperience(
+    $StartingDate: String
+    $EndDate: String
+    $Company: String
+    $Degree: String
+    $Responsibilities: String
+    $Role: String
+  ) {
+    addExperience(
+      StartingDate: $StartingDate
+      EndDate: $EndDate
+      Company: $Company
+      Degree: $Degree
+      Responsibilities: $Responsibilities
+      Role: $Role
+    )
+  }
+`;
+export const ADD_EDUCATION = gql`
+  mutation addEducation(
+    $University: String
+    $Degree: String
+    $StartingDate: String
+    $EndDate: String
+  ) {
+    addEducation(
+      University: $University
+      Degree: $Degree
+      CompanyName: $CompanyName
+      StartingDate: $StartingDate
+      EndDate: $EndDate
+    )
+  }
+`;
+
 export const ADD_USER = gql`
   mutation addUser(
     $Password: String

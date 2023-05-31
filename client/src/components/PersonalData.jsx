@@ -1,9 +1,8 @@
 import { ApolloClient } from "@apollo/client";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { GENERATE_TEXT, ADD_USER } from "../utils/mutations";
+import { ADD_USER } from "../utils/mutations";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import { set } from "../../../server/models/Education";
 
 const App = () => {
@@ -42,11 +41,12 @@ const App = () => {
         variables: { ...userFormData },
       });
       console.log(data);
+      window.location.replace("/work");
     } catch (err) {
       console.error(err);
     }
 
-    // window.location.replace("/work");
+    //
 
     // Here you can send the inputValue to OpenAI
   };
@@ -144,7 +144,7 @@ const App = () => {
                   <input
                     value={userFormData.Password}
                     onChange={handleInputChange}
-                    id="email"
+                    id="password"
                     placeholder="mauricio@resumate.com"
                     name="Password"
                     type="password"

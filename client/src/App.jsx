@@ -61,6 +61,7 @@ function App() {
             <Route path="/softskills" element={<SoftSkills />} />
             <Route path="/hardskills" element={<Hardskills />} />
             <Route path="/interests" element={<Interests />} />
+            <Route path="/comingsoon" element={<Comingsoon />} />
           </Routes>
           <Trustedby />
         </BrowserRouter>
