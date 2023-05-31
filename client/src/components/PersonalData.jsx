@@ -10,6 +10,7 @@ const App = () => {
   //   e.preventDefault();
   //   window.location.href = "/personaldata";
   // };
+
   const [userFormData, setUserFormData] = useState({
     Work: "",
     Role: "",
@@ -78,12 +79,15 @@ const App = () => {
       // variables: { prompt: inputValue },
     });
     setgeneratedText(result.data.generateText.data);
+
+    // console.log(result.data.generateText.data);
+    // console.log(generatedText);
     try {
       const { data } = await addUser({
         variables: { ...userFormData },
       });
       console.log(data);
-      // window.location.replace("/work");
+      window.location.replace("/resumefinal");
     } catch (err) {
       console.error(err);
     }
@@ -102,6 +106,8 @@ const App = () => {
           </h2>
           <p className="mt-1 text-base leading-6 text-gray-600">
             ✅ Type you data and we will make it much better!
+          </p>
+          <p id="imanoel" className="mt-1 text-base leading-6 text-gray-600">
             {generatedText}
           </p>
         </div>

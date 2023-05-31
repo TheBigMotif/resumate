@@ -21,6 +21,9 @@ import SoftSkills from "./components/SoftSkills.jsx";
 import Hardskills from "./components/Hardskills.jsx";
 import Interests from "./components/Interests.jsx";
 import Comingsoon from "./components/comingsoon.jsx";
+
+import Resumefinal from "./components/Resumefinal.jsx";
+
 const link = createHttpLink({
   uri: " http://localhost:3001/graphql",
 });
@@ -56,6 +59,7 @@ function App() {
             <Route path="/home1" element={<Rough setResult={setResult} />} />
             <Route path="/resume" element={<Resume result={result} />} />
             <Route path="/personaldata" element={<PersonalData />} />
+            <Route path="/resumefinal" element={<Resumefinal />} />
             <Route path="/work" element={<Work />} />
             <Route path="/education" element={<Education />} />
             <Route path="/softskills" element={<SoftSkills />} />
