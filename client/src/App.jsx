@@ -12,7 +12,8 @@ import Navbar from "./components/Navbar.jsx";
 import Signup from "./components/Signup.jsx";
 import PersonalData from "./components/PersonalData.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Prueba from "./components/Prueba.jsx";
+// import Prueba from "./components/Prueba.jsx";
+import Result from "./components/Results.jsx";
 import Resume from "./components/Resume.jsx";
 import Rough from "./components/Rough.jsx";
 import Work from "./components/Work.jsx";
@@ -56,6 +57,7 @@ function App() {
             <Route path="/home1" element={<Rough setResult={setResult} />} />
             <Route path="/resume" element={<Resume result={result} />} />
             <Route path="/personaldata" element={<PersonalData />} />
+            <Route path="/result" element={<Result />} />
             <Route path="/work" element={<Work />} />
             <Route path="/education" element={<Education />} />
             <Route path="/softskills" element={<SoftSkills />} />
