@@ -1,11 +1,11 @@
 {
   "name": "resumate",
+  "engines": {
+    "node:": "18.16.0"
+  },
   "version": "1.0.0",
   "description": "hola",
   "main": "server/server.js",
-  "engines": {
-    "node:": "16"
-  },
   "scripts": {
     "start": "node server/server.js --ignore client",
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm run dev\"",
