@@ -21,7 +21,7 @@ import SoftSkills from "./components/SoftSkills.jsx";
 import Hardskills from "./components/Hardskills.jsx";
 import Interests from "./components/Interests.jsx";
 import Comingsoon from "./components/comingsoon.jsx";
-import Footer from "./components/Footer.jsx";
+// import Footer from "./components/Footer.jsx";
 import Testimonials from "./components/Testimonials.jsx";
 import Pricing from "./components/Pricing.jsx";
 
@@ -73,7 +73,7 @@ function App() {
             <Route path="/pricing" element={<Pricing />} />
           </Routes>
           <Trustedby />
-          <Footer />
+          {/* <Footer /> */}
         </BrowserRouter>
       </ApolloProvider>
     </>
