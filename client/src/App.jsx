@@ -21,9 +21,9 @@ import SoftSkills from "./components/SoftSkills.jsx";
 import Hardskills from "./components/Hardskills.jsx";
 import Interests from "./components/Interests.jsx";
 import Comingsoon from "./components/comingsoon.jsx";
-import Footer from "./components/Footer.jsx";
-import Testimonials from "./components/Testimonials.jsx";
-import Pricing from "./components/Pricing.jsx";
+// import Footer from "./components/Footer.jsx";
+// import Testimonials from "./components/Testimonials.jsx";
+// import Pricing from "./components/Pricing.jsx";
 
 import Resumefinal from "./components/Resumefinal.jsx";
 
@@ -69,11 +69,11 @@ function App() {
             <Route path="/hardskills" element={<Hardskills />} />
             <Route path="/interests" element={<Interests />} />
             <Route path="/comingsoon" element={<Comingsoon />} />
-            <Route path="/testimonials" element={<Testimonials />} />
-            <Route path="/pricing" element={<Pricing />} />
+            {/* <Route path="/testimonials" element={<Testimonials />} />
+            <Route path="/pricing" element={<Pricing />} /> */}
           </Routes>
           <Trustedby />
-          <Footer />
+          {/* <Footer /> */}
         </BrowserRouter>
       </ApolloProvider>
     </>
