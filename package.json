@@ -1,7 +1,7 @@
 {
   "name": "resumate",
   "engines": {
-    "node:": "18.16.0"
+    "node:": "16"
   },
   "version": "1.0.0",
   "description": "hola",
