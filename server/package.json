@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "watch": "nodemon server.js"
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
@@ -21,9 +20,7 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.2.0",
     "multer": "^1.4.5-lts.1",
-    "openai": "^3.2.1",
-    "puppeteer": "^20.4.0",
-    "nodemon": "^2.0.22"
+    "openai": "^3.2.1"
   },
   "devDependencies": {},
   "homepage": "https://aaronagraz.github.io"
