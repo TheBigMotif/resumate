@@ -18,10 +18,10 @@
     "express": "^4.18.2",
     "graphql": "^16.6.0",
     "jsonwebtoken": "^9.0.0",
+    "mongodb": "^5.6.0",
     "mongoose": "^7.2.0",
     "multer": "^1.4.5-lts.1",
     "openai": "^3.2.1"
   },
-  "devDependencies": {},
   "homepage": "https://aaronagraz.github.io"
 }
